@@ -9,6 +9,7 @@ import (
 )
 
 func TestCtxWithoutCancel(t *testing.T) {
+	// nolint:staticcheck
 	cancelledCtx, cancel := context.WithTimeout(
 		context.WithValue(CtxWithoutCancel(nil), "key", "value"), time.Second)
 	detachedCtx := CtxWithoutCancel(cancelledCtx)
