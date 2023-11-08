@@ -24,7 +24,7 @@ func TestHttpCfg_NewRestyClient(t *testing.T) {
 			&HttpCfg{
 				HttpClient:       http.DefaultClient,
 				BaseUrl:          "base",
-				Headers:          map[string][]string{"header": {"value"}},
+				Headers:          map[string][]string{"Header": {"value"}},
 				RetryCount:       1,
 				RetryWaitTime:    time.Millisecond,
 				RetryMaxWaitTime: time.Second,
@@ -34,7 +34,7 @@ func TestHttpCfg_NewRestyClient(t *testing.T) {
 				assert.NotNil(t, c)
 				assert.Equal(t, http.DefaultClient, c.GetClient())
 				assert.Equal(t, "base", c.BaseURL)
-				assert.Equal(t, []string{"value"}, c.Header["header"])
+				assert.Equal(t, []string{"value"}, c.Header["Header"])
 				assert.Equal(t, 1, c.RetryCount)
 				assert.Equal(t, time.Millisecond, c.RetryWaitTime)
 				assert.Equal(t, time.Second, c.RetryMaxWaitTime)

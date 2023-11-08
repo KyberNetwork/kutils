@@ -1,0 +1,20 @@
+name: 'CI'
+
+concurrency:
+  group: ci-workflow-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+permissions: write-all
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'develop'
+      - 'main'
+  pull_request:
+
+jobs:
+  ci:
+    uses: KyberNetwork/service-framework/.github/workflows/ci.yaml@main
+    secrets: inherit
