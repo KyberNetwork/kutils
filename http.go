@@ -13,9 +13,10 @@ import (
 )
 
 type HttpCfg struct {
-	HttpClient       *http.Client `json:"-"`
-	BaseUrl          string       // client's base url for all methods
-	Headers          http.Header
+	HttpClient       *http.Client  `json:"-"`
+	BaseUrl          string        // client's base url for all methods
+	Headers          http.Header   // default headers
+	Timeout          time.Duration // request timeout, see http.Client's Timeout
 	RetryCount       int           // retry count (exponential backoff), default 0
 	RetryWaitTime    time.Duration // first exponential backoff, default 100ms
 	RetryMaxWaitTime time.Duration // max exponential backoff, default 2s
@@ -26,11 +27,14 @@ func (h *HttpCfg) NewRestyClient() (client *resty.Client) {
 	if h == nil {
 		return resty.New()
 	}
-	if hc := h.HttpClient; hc == nil {
-		client = resty.New()
-	} else {
-		client = resty.NewWithClient(hc)
+
+	hc := h.HttpClient
+	if hc == nil {
+		hc = &http.Client{Timeout: h.Timeout}
+	} else if hc.Timeout == 0 {
+		hc.Timeout = h.Timeout
 	}
+	client = resty.NewWithClient(hc)
 
 	client.SetBaseURL(h.BaseUrl).
 		SetRetryCount(h.RetryCount).
