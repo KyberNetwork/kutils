@@ -12,6 +12,7 @@ import (
 	"github.com/hashicorp/go-retryablehttp"
 )
 
+// HttpCfg is the resty http client configs
 type HttpCfg struct {
 	HttpClient       *http.Client  `json:"-"`
 	BaseUrl          string        // client's base url for all methods
@@ -23,6 +24,7 @@ type HttpCfg struct {
 	Debug            bool          // whether to log requests and responses
 }
 
+// NewRestyClient creates a new resty client with the given configs
 func (h *HttpCfg) NewRestyClient() (client *resty.Client) {
 	if h == nil {
 		return resty.New()
@@ -47,7 +49,7 @@ func (h *HttpCfg) NewRestyClient() (client *resty.Client) {
 	if maxWaitTime := h.RetryMaxWaitTime; maxWaitTime != 0 {
 		client.SetRetryMaxWaitTime(maxWaitTime)
 	}
-	client.JSONMarshal = json.Marshal
+	client.JSONMarshal = JSONMarshal
 	client.JSONUnmarshal = JSONUnmarshal
 	return client
 }
@@ -65,6 +67,12 @@ func retryableHttpError(r *resty.Response, err error) bool {
 	}
 }
 
+// JSONMarshal allows choosing the JSON marshalling implementation with build tag with the same logic as used by gin
+func JSONMarshal(v any) ([]byte, error) {
+	return json.Marshal(v)
+}
+
+// JSONUnmarshal allows choosing the JSON unmarshalling implementation with build tag with the same logic as used by gin
 func JSONUnmarshal(data []byte, v any) error {
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.UseNumber()
