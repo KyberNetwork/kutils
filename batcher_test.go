@@ -7,9 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/KyberNetwork/logger"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/KyberNetwork/kutils/klog"
 )
 
 func TestChanBatcher(t *testing.T) {
@@ -70,7 +71,7 @@ func TestChanBatcher(t *testing.T) {
 			batcher.Batch(tasks[i])
 		}
 		// 1k: 2.561804ms; 1M: 2.62s - average overhead per task = 2.6µs
-		logger.Warnf("done %d tasks in %v", taskCnt, time.Since(start))
+		klog.Warnf(ctx, "done %d tasks in %v", taskCnt, time.Since(start))
 		for i := 0; i < taskCnt; i++ {
 			ret, err := tasks[i].Result()
 			assert.NoError(t, err)
