@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/KyberNetwork/kutils/internal/json"
-
 	"github.com/go-resty/resty/v2"
 	"github.com/hashicorp/go-retryablehttp"
+
+	"github.com/KyberNetwork/kutils/internal/json"
 )
 
 type HttpCfg struct {

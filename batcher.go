@@ -8,8 +8,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/KyberNetwork/logger"
 	"github.com/pkg/errors"
+
+	"github.com/KyberNetwork/kutils/klog"
 )
 
 //go:generate mockgen -source=batcher.go -destination mocks/mocks.go -package mocks
@@ -77,7 +78,8 @@ func (c *ChanTask[R]) Result() (R, error) {
 func (c *ChanTask[R]) Resolve(ret R, err error) {
 	select {
 	case <-c.done:
-		logger.Errorf("ChanTask.Resolve|called twice, ignored|c.Ret=%v,c.Err=%v|Ret=%v,Err=%v", c.Ret, c.Err, ret, err)
+		klog.Errorf(c.ctx, "ChanTask.Resolve|called twice, ignored|c.Ret=%v,c.Err=%v|Ret=%v,Err=%v",
+			c.Ret, c.Err, ret, err)
 	default:
 		c.Ret, c.Err = ret, err
 		close(c.done)
@@ -143,7 +145,8 @@ func (b *ChanBatcher[T, R]) batchFnWithRecover(tasks []T) {
 		if p == nil {
 			return
 		}
-		logger.Errorf("ChanBatcher.goBatchFn|recovered from panic: %v\n%s", p, string(debug.Stack()))
+		klog.Errorf(context.Background(), "ChanBatcher.goBatchFn|recovered from panic: %v\n%s",
+			p, string(debug.Stack()))
 		var ret R
 		for _, task := range tasks {
 			if task.IsDone() {
@@ -164,7 +167,8 @@ func (b *ChanBatcher[T, R]) batchFnWithRecover(tasks []T) {
 func (b *ChanBatcher[T, R]) worker() {
 	defer func() {
 		if p := recover(); p != nil {
-			logger.Errorf("ChanBatcher.worker|recovered from panic: %v\n%s", p, string(debug.Stack()))
+			klog.Errorf(context.Background(), "ChanBatcher.worker|recovered from panic: %v\n%s",
+				p, string(debug.Stack()))
 		}
 	}()
 	var tasks []T
@@ -176,12 +180,13 @@ func (b *ChanBatcher[T, R]) worker() {
 			if len(tasks) == 0 {
 				break
 			}
-			logger.Debugf("ChanBatcher.worker|timer|%d tasks", len(tasks))
+			klog.Debugf(tasks[0].Ctx(), "ChanBatcher.worker|timer|%d tasks", len(tasks))
 			go b.batchFnWithRecover(tasks)
 			tasks = tasks[:0:0]
 		case task, ok := <-b.taskCh:
+			ctx := task.Ctx()
 			if !ok {
-				logger.Debugf("ChanBatcher.worker|closed|%d tasks", len(tasks))
+				klog.Debugf(ctx, "ChanBatcher.worker|closed|%d tasks", len(tasks))
 				if len(tasks) > 0 {
 					go b.batchFnWithRecover(tasks)
 				}
@@ -189,16 +194,16 @@ func (b *ChanBatcher[T, R]) worker() {
 			}
 			if !task.IsDone() {
 				select {
-				case <-task.Ctx().Done():
-					logger.Infof("ChanBatcher.worker|skip|task=%v", task)
-					task.Resolve(*new(R), task.Ctx().Err())
+				case <-ctx.Done():
+					klog.Infof(ctx, "ChanBatcher.worker|skip|task=%v", task)
+					task.Resolve(*new(R), ctx.Err())
 					continue
 				default:
 				}
 			}
 			duration, batchCount := b.batchCfg()
 			if len(tasks) == 0 {
-				logger.Debugf("ChanBatcher.worker|timer start|duration=%s", duration)
+				klog.Debugf(ctx, "ChanBatcher.worker|timer start|duration=%s", duration)
 				if !batchTimer.Stop() {
 					select {
 					case <-batchTimer.C:
@@ -209,7 +214,7 @@ func (b *ChanBatcher[T, R]) worker() {
 			}
 			tasks = append(tasks, task)
 			if len(tasks) >= batchCount {
-				logger.Debugf("ChanBatcher.worker|max|%d tasks", len(tasks))
+				klog.Debugf(ctx, "ChanBatcher.worker|max|%d tasks", len(tasks))
 				go b.batchFnWithRecover(tasks)
 				tasks = tasks[:0:0]
 			}
