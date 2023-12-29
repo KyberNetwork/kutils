@@ -145,15 +145,17 @@ func (b *ChanBatcher[T, R]) batchFnWithRecover(tasks []T) {
 		}
 		logger.Errorf("ChanBatcher.goBatchFn|recovered from panic: %v\n%s", p, string(debug.Stack()))
 		var ret R
+		err, ok := p.(error)
+		if ok {
+			err = errors.Wrap(err, "batchFn panicked")
+		} else {
+			err = errors.Errorf("batchFn panicked: %v", p)
+		}
 		for _, task := range tasks {
 			if task.IsDone() {
 				continue
 			}
-			if err, ok := p.(error); ok {
-				task.Resolve(ret, errors.Wrap(err, "batchFn panicked"))
-			} else {
-				task.Resolve(ret, errors.Errorf("batchFn panicked: %v", p))
-			}
+			task.Resolve(ret, err)
 		}
 	}()
 	b.batchFn(tasks)
