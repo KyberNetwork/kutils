@@ -186,14 +186,16 @@ func (b *ChanBatcher[T, R]) worker() {
 			go b.batchFnWithRecover(tasks)
 			tasks = tasks[:0:0]
 		case task, ok := <-b.taskCh:
-			ctx := task.Ctx()
 			if !ok {
-				klog.Debugf(ctx, "ChanBatcher.worker|closed|%d tasks", len(tasks))
+				ctx := context.Background()
 				if len(tasks) > 0 {
+					ctx = tasks[0].Ctx()
 					go b.batchFnWithRecover(tasks)
 				}
+				klog.Debugf(ctx, "ChanBatcher.worker|closed|%d tasks", len(tasks))
 				return
 			}
+			ctx := task.Ctx()
 			if !task.IsDone() {
 				select {
 				case <-ctx.Done():
