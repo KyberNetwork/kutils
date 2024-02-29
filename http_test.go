@@ -1,9 +1,11 @@
 package kutils
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net"
 	"net/http"
 	"net/url"
 	"testing"
@@ -11,6 +13,8 @@ import (
 
 	"github.com/go-resty/resty/v2"
 	"github.com/stretchr/testify/assert"
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
 )
 
 func TestHttpCfg_NewRestyClient(t *testing.T) {
@@ -157,6 +161,90 @@ func Test_retryableHttpError(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			assert.Equalf(t, tt.want, retryableHttpError(tt.args.r, tt.args.err), "retryableHttpError(%v, %v)",
 				tt.args.r, tt.args.err)
+		})
+	}
+}
+
+func Test_h2c(t *testing.T) {
+	body := "hello"
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(body))
+		assert.Nil(t, r.TLS, nil)
+	})
+	h2s := &http2.Server{}
+	h2cHandler := h2c.NewHandler(handler, h2s)
+	tests := []struct {
+		name          string
+		serverHandler http.Handler
+		clientCfg     *HttpCfg
+		wantErr       assert.ErrorAssertionFunc
+		expects       func(*testing.T, *resty.Response)
+	}{
+		{
+			"h1 server, h1 client",
+			handler,
+			&HttpCfg{},
+			assert.NoError,
+			func(t *testing.T, resp *resty.Response) {
+				assert.Equal(t, "HTTP/1.1", resp.Proto())
+				assert.Equal(t, http.StatusOK, resp.StatusCode())
+				assert.Equal(t, body, resp.String())
+			},
+		},
+		{
+			"h1 server, h2c client",
+			handler,
+			&HttpCfg{UseH2c: true},
+			assert.Error,
+			nil,
+		},
+		{
+			"h2 server, h1 client",
+			h2cHandler,
+			&HttpCfg{},
+			assert.NoError,
+			func(t *testing.T, resp *resty.Response) {
+				assert.Equal(t, "HTTP/1.1", resp.Proto())
+				assert.Equal(t, http.StatusOK, resp.StatusCode())
+				assert.Equal(t, body, resp.String())
+			},
+		},
+		{
+			"h2 server, h2c client",
+			h2cHandler,
+			&HttpCfg{UseH2c: true},
+			assert.NoError,
+			func(t *testing.T, resp *resty.Response) {
+				assert.Equal(t, "HTTP/2.0", resp.Proto())
+				assert.Equal(t, http.StatusOK, resp.StatusCode())
+				assert.Equal(t, body, resp.String())
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ln, err := net.Listen("tcp", "127.0.0.1:")
+			assert.NoError(t, err)
+			srv := &http.Server{
+				Addr:    ln.Addr().String(),
+				Handler: tt.serverHandler,
+			}
+
+			go func() {
+				_ = srv.Serve(ln)
+			}()
+			defer func(srv *http.Server, ctx context.Context) {
+				_ = srv.Shutdown(ctx)
+			}(srv, context.Background())
+
+			client := tt.clientCfg.NewRestyClient()
+			resp, err := client.R().EnableTrace().Get("http://" + srv.Addr)
+
+			tt.wantErr(t, err)
+			if tt.expects != nil {
+				tt.expects(t, resp)
+			}
 		})
 	}
 }

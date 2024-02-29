@@ -3,11 +3,14 @@ package kutils
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
+	"net"
 	"net/http"
 	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/hashicorp/go-retryablehttp"
+	"golang.org/x/net/http2"
 
 	"github.com/KyberNetwork/kutils/internal/json"
 )
@@ -21,6 +24,7 @@ type HttpCfg struct {
 	MaxIdleConns        int           // max idle connections for all hosts, default 100
 	MaxIdleConnsPerHost int           // max idle connections per host, default GOMAXPROCS+1
 	MaxConnsPerHost     int           // max total connections per host, default 0 (unlimited)
+	UseH2c              bool          // whether to use http2 h2c, default false
 	RetryCount          int           // retry count (exponential backoff), default 0
 	RetryWaitTime       time.Duration // first exponential backoff, default 100ms
 	RetryMaxWaitTime    time.Duration // max exponential backoff, default 2s
@@ -52,6 +56,18 @@ func (h *HttpCfg) NewRestyClient() (client *resty.Client) {
 			transport.MaxConnsPerHost = h.MaxConnsPerHost
 		}
 		client.SetTransport(transport)
+		if h.UseH2c {
+			if h2cTransport, err := http2.ConfigureTransports(transport); err == nil {
+				h2cTransport.AllowHTTP = true
+			}
+			client.SetTransport(&http2.Transport{
+				AllowHTTP: true,
+				DialTLSContext: func(ctx context.Context, network, addr string, cfg *tls.Config) (net.Conn, error) {
+					var d net.Dialer
+					return d.DialContext(ctx, network, addr)
+				},
+			})
+		}
 	}
 
 	client.SetBaseURL(h.BaseUrl).
