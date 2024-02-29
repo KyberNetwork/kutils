@@ -10,9 +10,9 @@ func DefaultLogger() Logger {
 	return logger.DefaultLogger()
 }
 
-type Logger logger.Logger
+type Logger = logger.Logger
 
-var log logger.Logger
+var log Logger
 
 type Configuration struct {
 	EnableConsole    bool
@@ -24,13 +24,13 @@ type Configuration struct {
 	FileLocation     string
 }
 
-type LoggerBackend logger.LoggerBackend
+type LoggerBackend = logger.LoggerBackend
 
 const (
 	// LoggerBackendZap logging using Uber's zap backend
-	LoggerBackendZap = LoggerBackend(logger.LoggerBackendZap)
+	LoggerBackendZap = logger.LoggerBackendZap
 	// LoggerBackendLogrus logging using logrus backend
-	LoggerBackendLogrus = LoggerBackend(logger.LoggerBackendLogrus)
+	LoggerBackendLogrus = logger.LoggerBackendLogrus
 )
 
 func InitLogger(config Configuration, backend LoggerBackend) (Logger, error) {
@@ -43,7 +43,7 @@ func InitLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 		FileJSONFormat:   config.FileJSONFormat,
 		FileLevel:        config.FileLevel,
 		FileLocation:     config.FileLocation,
-	}, logger.LoggerBackend(backend))
+	}, backend)
 	return log, err
 }
 
@@ -63,7 +63,7 @@ func NewLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 		FileJSONFormat:   config.FileJSONFormat,
 		FileLevel:        config.FileLevel,
 		FileLocation:     config.FileLocation,
-	}, logger.LoggerBackend(backend))
+	}, backend)
 }
 
 type CtxKeyLogger struct{}
@@ -129,10 +129,10 @@ func Fatalf(ctx context.Context, format string, args ...any) {
 	LoggerFromCtx(ctx).Fatalf(format, args...)
 }
 
-type Fields logger.Fields
+type Fields = logger.Fields
 
 func WithFields(ctx context.Context, keyValues Fields) Logger {
-	return LoggerFromCtx(ctx).WithFields(logger.Fields(keyValues))
+	return LoggerFromCtx(ctx).WithFields(keyValues)
 }
 
 func GetDelegate(ctx context.Context) any {
