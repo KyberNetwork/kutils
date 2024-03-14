@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/KyberNetwork/logger v0.1.0
 	github.com/bytedance/sonic v1.10.2
-	github.com/go-resty/resty/v2 v2.10.0
+	github.com/go-resty/resty/v2 v2.11.0
 	github.com/goccy/go-json v0.10.2
 	github.com/hashicorp/go-retryablehttp v0.7.5
 	github.com/json-iterator/go v1.1.12
