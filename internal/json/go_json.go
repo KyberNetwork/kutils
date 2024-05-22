@@ -7,17 +7,24 @@
 
 package json
 
-import json "github.com/goccy/go-json"
+import "github.com/goccy/go-json"
+
+type (
+	// Unmarshaler is exported by go-json package.
+	Unmarshaler = json.Unmarshaler
+	// RawMessage is exported by go-json package.
+	RawMessage = json.RawMessage
+)
 
 var (
-	// Marshal is exported by gin/json package.
+	// Marshal is exported by go-json package.
 	Marshal = json.Marshal
-	// Unmarshal is exported by gin/json package.
+	// Unmarshal is exported by go-json package.
 	Unmarshal = json.Unmarshal
-	// MarshalIndent is exported by gin/json package.
+	// MarshalIndent is exported by go-json package.
 	MarshalIndent = json.MarshalIndent
-	// NewDecoder is exported by gin/json package.
+	// NewDecoder is exported by go-json package.
 	NewDecoder = json.NewDecoder
-	// NewEncoder is exported by gin/json package.
+	// NewEncoder is exported by go-json package.
 	NewEncoder = json.NewEncoder
 )
