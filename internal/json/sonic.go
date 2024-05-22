@@ -12,16 +12,23 @@ package json
 
 import "github.com/bytedance/sonic"
 
+type (
+	// Unmarshaler is exported by sonic package.
+	Unmarshaler = json.Unmarshaler
+	// RawMessage is exported by sonic package.
+	RawMessage = json.RawMessage
+)
+
 var (
 	json = sonic.ConfigStd
-	// Marshal is exported by gin/json package.
+	// Marshal is exported by sonic package.
 	Marshal = json.Marshal
-	// Unmarshal is exported by gin/json package.
+	// Unmarshal is exported by sonic package.
 	Unmarshal = json.Unmarshal
-	// MarshalIndent is exported by gin/json package.
+	// MarshalIndent is exported by sonic package.
 	MarshalIndent = json.MarshalIndent
-	// NewDecoder is exported by gin/json package.
+	// NewDecoder is exported by sonic package.
 	NewDecoder = json.NewDecoder
-	// NewEncoder is exported by gin/json package.
+	// NewEncoder is exported by sonic package.
 	NewEncoder = json.NewEncoder
 )
