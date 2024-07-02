@@ -10,7 +10,7 @@ require (
 	github.com/ethereum/go-ethereum v1.14.3
 	github.com/go-resty/resty/v2 v2.13.1
 	github.com/goccy/go-json v0.10.3
-	github.com/hashicorp/go-retryablehttp v0.7.6
+	github.com/hashicorp/go-retryablehttp v0.7.7
 	github.com/json-iterator/go v1.1.12
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/pkg/errors v0.9.1
