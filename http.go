@@ -74,7 +74,11 @@ func (h *HttpCfg) NewRestyClient() (client *resty.Client) {
 		SetRetryCount(h.RetryCount).
 		AddRetryCondition(retryableHttpError).
 		SetDebug(h.Debug)
-	client.Header = h.Headers
+	for key, values := range h.Headers {
+		for _, value := range values {
+			client.Header.Add(key, value)
+		}
+	}
 	if waitTime := h.RetryWaitTime; waitTime != 0 {
 		client.SetRetryWaitTime(waitTime)
 	}
