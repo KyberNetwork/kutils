@@ -21,7 +21,7 @@ func TestChanBatcher(t *testing.T) {
 		return batchRate, 2
 	}, func(tasks []*ChanTask[time.Duration]) { batchFn(tasks) })
 	var cnt atomic.Uint32
-	start := time.Now()
+	var start time.Time
 	batchFn = func(tasks []*ChanTask[time.Duration]) {
 		cnt.Add(1)
 		for _, task := range tasks {
@@ -31,29 +31,54 @@ func TestChanBatcher(t *testing.T) {
 	task0 := NewChanTask[time.Duration](ctx)
 	task1 := NewChanTask[time.Duration](ctx)
 	task2 := NewChanTask[time.Duration](ctx)
+	task3 := NewChanTask[time.Duration](ctx)
 
 	t.Run("happy", func(t *testing.T) {
-		batcher.Batch(task0)
-		batcher.Batch(task1)
-		_, _ = task0.Result()
-		assert.EqualValues(t, 1, cnt.Load())
-		assert.NoError(t, task0.Err)
-		assert.Less(t, task0.Ret, batchRate)
-		ret, err := task1.Result()
-		assert.NoError(t, err)
-		assert.Less(t, ret, batchRate)
-		time.Sleep(batchRate * 11 / 10)
-		runtime.Gosched()
+		t.Run("trigger max", func(t *testing.T) {
+			start = time.Now()
+			batcher.Batch(task0)
+			batcher.Batch(task1)
+			_, _ = task0.Result()
+			assert.EqualValues(t, 1, cnt.Load())
+			assert.NoError(t, task0.Err)
+			assert.Less(t, task0.Ret, batchRate)
+			ret, err := task1.Result()
+			assert.NoError(t, err)
+			assert.Less(t, ret, batchRate)
+			time.Sleep(batchRate * 11 / 10)
+			runtime.Gosched()
+		})
 
-		batcher.Batch(task2)
-		assert.False(t, task2.IsDone())
-		ret, err = task2.Result()
-		assert.True(t, task2.IsDone())
-		assert.EqualValues(t, 2, cnt.Load())
-		assert.Equal(t, task2.Err, err)
-		assert.NoError(t, task2.Err)
-		assert.Equal(t, task2.Ret, ret)
-		assert.Greater(t, ret, batchRate)
+		t.Run("trigger timer after blocked by .Result()", func(t *testing.T) {
+			start = time.Now()
+			batcher.Batch(task2)
+			assert.False(t, task2.IsDone())
+			ret, err := task2.Result()
+			assert.True(t, task2.IsDone())
+			assert.EqualValues(t, 2, cnt.Load())
+			assert.Equal(t, task2.Err, err)
+			assert.NoError(t, task2.Err)
+			assert.Equal(t, task2.Ret, ret)
+			assert.Greater(t, ret, batchRate)
+		})
+
+		t.Run("trigger flush", func(t *testing.T) {
+			start = time.Now()
+			batcher.Batch(task3)
+			assert.False(t, task3.IsDone())
+			batcher.Flush()
+			batcher.Flush()
+			ret, err := task3.Result()
+			assert.True(t, task3.IsDone())
+			assert.EqualValues(t, 3, cnt.Load())
+			assert.Equal(t, task3.Err, err)
+			assert.NoError(t, task3.Err)
+			assert.Equal(t, task3.Ret, ret)
+			assert.Less(t, ret, batchRate)
+			batcher.Flush()
+			batcher.Flush()
+			assert.EqualValues(t, 3, cnt.Load())
+		})
 	})
 
 	t.Run("spam", func(t *testing.T) {
@@ -111,13 +136,14 @@ func TestChanBatcher(t *testing.T) {
 		assert.ErrorIs(t, task0.Err, panicErr)
 		assert.ErrorIs(t, task1.Err, panicErr)
 
+		start = time.Now()
 		batchFn = oldBatchFn
 		task2 = NewChanTask[time.Duration](nil) // nolint:staticcheck
 		batcher.Batch(task2)
 		batcher.Batch(task2)
 		ret, err := task2.Result()
 		assert.NoError(t, err)
-		assert.Greater(t, ret, batchRate)
+		assert.Less(t, ret, batchRate)
 	})
 
 	t.Run("cancelled task", func(t *testing.T) {

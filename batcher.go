@@ -92,6 +92,8 @@ func (c *ChanTask[R]) Resolve(ret R, err error) {
 type Batcher[T BatchableTask[R], R any] interface {
 	// Batch submits a BatchableTask to the batcher.
 	Batch(task T)
+	// Flush executes tasks currently waiting in queue immediately.
+	Flush()
 	// Close should stop Batch from being called and clean up any background resources.
 	Close()
 }
@@ -108,6 +110,7 @@ type ChanBatcher[T BatchableTask[R], R any] struct {
 	batchCfg BatchCfg
 	batchFn  BatchFn[T]
 	taskCh   chan T
+	flushCh  chan struct{}
 	closed   atomic.Bool
 }
 
@@ -117,6 +120,7 @@ func NewChanBatcher[T BatchableTask[R], R any](batchCfg BatchCfg, batchFn BatchF
 		batchCfg: batchCfg,
 		batchFn:  batchFn,
 		taskCh:   make(chan T, 16*batchCnt),
+		flushCh:  make(chan struct{}, 1),
 	}
 	go chanBatcher.worker()
 	return chanBatcher
@@ -128,6 +132,16 @@ func (b *ChanBatcher[T, R]) Batch(task T) {
 		b.taskCh <- task
 	} else {
 		task.Resolve(*new(R), ErrBatcherClosed)
+	}
+}
+
+// Flush executes tasks currently waiting in queue immediately.
+func (b *ChanBatcher[T, R]) Flush() {
+	if !b.closed.Load() {
+		select {
+		case b.flushCh <- struct{}{}:
+		default:
+		}
 	}
 }
 
@@ -183,6 +197,13 @@ func (b *ChanBatcher[T, R]) worker() {
 				break
 			}
 			klog.Debugf(tasks[0].Ctx(), "ChanBatcher.worker|timer|%d tasks", len(tasks))
+			go b.batchFnWithRecover(tasks)
+			tasks = tasks[:0:0]
+		case <-b.flushCh:
+			if len(tasks) == 0 {
+				break
+			}
+			klog.Debugf(tasks[0].Ctx(), "ChanBatcher.worker|flush|%d tasks", len(tasks))
 			go b.batchFnWithRecover(tasks)
 			tasks = tasks[:0:0]
 		case task, ok := <-b.taskCh:
