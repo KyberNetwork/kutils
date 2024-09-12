@@ -5,6 +5,7 @@
 //
 //	mockgen -source=batcher.go -destination mocks/mocks.go -package mocks
 //
+
 // Package mocks is a generated GoMock package.
 package mocks
 
@@ -67,6 +68,20 @@ func (mr *MockBatchableTaskMockRecorder[R]) Done() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Done", reflect.TypeOf((*MockBatchableTask[R])(nil).Done))
 }
 
+// IsDone mocks base method.
+func (m *MockBatchableTask[R]) IsDone() bool {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "IsDone")
+	ret0, _ := ret[0].(bool)
+	return ret0
+}
+
+// IsDone indicates an expected call of IsDone.
+func (mr *MockBatchableTaskMockRecorder[R]) IsDone() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsDone", reflect.TypeOf((*MockBatchableTask[R])(nil).IsDone))
+}
+
 // Resolve mocks base method.
 func (m *MockBatchableTask[R]) Resolve(ret R, err error) {
 	m.ctrl.T.Helper()
@@ -77,6 +92,21 @@ func (m *MockBatchableTask[R]) Resolve(ret R, err error) {
 func (mr *MockBatchableTaskMockRecorder[R]) Resolve(ret, err any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Resolve", reflect.TypeOf((*MockBatchableTask[R])(nil).Resolve), ret, err)
+}
+
+// Result mocks base method.
+func (m *MockBatchableTask[R]) Result() (R, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Result")
+	ret0, _ := ret[0].(R)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Result indicates an expected call of Result.
+func (mr *MockBatchableTaskMockRecorder[R]) Result() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Result", reflect.TypeOf((*MockBatchableTask[R])(nil).Result))
 }
 
 // MockBatcher is a mock of Batcher interface.
@@ -124,4 +154,16 @@ func (m *MockBatcher[T, R]) Close() {
 func (mr *MockBatcherMockRecorder[T, R]) Close() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Close", reflect.TypeOf((*MockBatcher[T, R])(nil).Close))
+}
+
+// Flush mocks base method.
+func (m *MockBatcher[T, R]) Flush() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "Flush")
+}
+
+// Flush indicates an expected call of Flush.
+func (mr *MockBatcherMockRecorder[T, R]) Flush() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Flush", reflect.TypeOf((*MockBatcher[T, R])(nil).Flush))
 }
