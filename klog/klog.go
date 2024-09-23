@@ -2,6 +2,7 @@ package klog
 
 import (
 	"context"
+	"sync"
 
 	"github.com/KyberNetwork/logger"
 )
@@ -12,7 +13,10 @@ func DefaultLogger() Logger {
 
 type Logger = logger.Logger
 
-var log Logger
+var (
+	log  Logger
+	once sync.Once
+)
 
 type Configuration struct {
 	EnableConsole    bool
@@ -35,22 +39,26 @@ const (
 
 func InitLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 	var err error
-	log, err = logger.InitLogger(logger.Configuration{
-		EnableConsole:    config.EnableConsole,
-		EnableJSONFormat: config.EnableJSONFormat,
-		ConsoleLevel:     config.ConsoleLevel,
-		EnableFile:       config.EnableFile,
-		FileJSONFormat:   config.FileJSONFormat,
-		FileLevel:        config.FileLevel,
-		FileLocation:     config.FileLocation,
-	}, backend)
+	once.Do(func() {
+		log, err = logger.InitLogger(logger.Configuration{
+			EnableConsole:    config.EnableConsole,
+			EnableJSONFormat: config.EnableJSONFormat,
+			ConsoleLevel:     config.ConsoleLevel,
+			EnableFile:       config.EnableFile,
+			FileJSONFormat:   config.FileJSONFormat,
+			FileLevel:        config.FileLevel,
+			FileLocation:     config.FileLocation,
+		}, backend)
+	})
 	return log, err
 }
 
 func Log() Logger {
-	if log == nil {
-		log = DefaultLogger()
-	}
+	once.Do(func() {
+		if log == nil {
+			log = DefaultLogger()
+		}
+	})
 	return log
 }
 
