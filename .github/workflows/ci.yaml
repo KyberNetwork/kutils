@@ -17,4 +17,6 @@ on:
 jobs:
   ci:
     uses: KyberNetwork/service-framework/.github/workflows/ci.yaml@main
+    with:
+      runs-on: ubuntu-latest
     secrets: inherit
