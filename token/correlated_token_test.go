@@ -1,7 +1,7 @@
 package token_test
 
 import (
-	"github.com/KyberNetwork/kutils/internal/token"
+	"github.com/KyberNetwork/kutils/token"
 	"github.com/stretchr/testify/require"
 	"testing"
 )
