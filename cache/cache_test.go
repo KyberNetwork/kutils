@@ -16,7 +16,7 @@ func TestCache(t *testing.T) {
 			Type: "ristretto",
 		}},
 		{"Redis", &cache.CfgCache{
-			Type: "redis",
+			Type: "ristretto",
 			Redis: &cache.RedisConfig{
 				Addresses: "localhost:6379",
 			},
