@@ -5,18 +5,61 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 )
 
-type RedisCache struct {
-	client *redis.Client
+// RedisConfig contains all configuration of redis
+type RedisConfig struct {
+	Addresses        string
+	MasterName       string
+	DBNumber         int
+	Username         string
+	Password         string
+	SentinelUsername string
+	SentinelPassword string
+	Prefix           string
+	Separator        string
+	ReadTimeout      time.Duration
+	WriteTimeout     time.Duration
+	RouteRandomly    bool
+	ReplicaOnly      bool
 }
 
-func NewRedisCache(redisURL string) *RedisCache {
-	client := redis.NewClient(&redis.Options{
-		Addr: redisURL,
+type RedisCache struct {
+	client redis.UniversalClient
+}
+
+func NewRedisCache(cfg *RedisConfig) *RedisCache {
+	addrs := strings.Split(cfg.Addresses, ",")
+	if cfg.MasterName != "" {
+		client := redis.NewFailoverClusterClient(&redis.FailoverOptions{
+			MasterName:       cfg.MasterName,
+			SentinelAddrs:    addrs,
+			DB:               cfg.DBNumber,
+			Username:         cfg.Username,
+			Password:         cfg.Password,
+			SentinelUsername: cfg.SentinelUsername,
+			SentinelPassword: cfg.SentinelPassword,
+			ReadTimeout:      cfg.ReadTimeout,
+			WriteTimeout:     cfg.WriteTimeout,
+			RouteRandomly:    cfg.RouteRandomly,
+			ReplicaOnly:      cfg.ReplicaOnly,
+		})
+		return &RedisCache{client: client}
+	}
+	client := redis.NewUniversalClient(&redis.UniversalOptions{
+		Addrs:            addrs,
+		MasterName:       cfg.MasterName,
+		DB:               cfg.DBNumber,
+		Username:         cfg.Username,
+		Password:         cfg.Password,
+		SentinelUsername: cfg.SentinelUsername,
+		SentinelPassword: cfg.SentinelPassword,
+		ReadTimeout:      cfg.ReadTimeout,
+		WriteTimeout:     cfg.WriteTimeout,
 	})
 	return &RedisCache{client: client}
 }

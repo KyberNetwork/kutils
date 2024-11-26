@@ -13,14 +13,14 @@ type Cache interface {
 
 type CfgCache struct {
 	*ristretto.Config
-	Type     string
-	RedisUrl string
+	Type  string
+	Redis *RedisConfig
 }
 
 func NewCache(cfg *CfgCache) Cache {
 	var cache Cache
-	if cfg.Type == "redis" && cfg.RedisUrl != "" {
-		cache = NewRedisCache(cfg.RedisUrl)
+	if cfg.Type == "redis" && cfg.Redis != nil {
+		cache = NewRedisCache(cfg.Redis)
 	} else {
 		if cfg.Config == nil {
 			cache, _ = NewRistrettoCacheDefault()
