@@ -5,18 +5,28 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 )
 
-type RedisCache struct {
-	client *redis.Client
+type RedisConfig struct {
+	RedisAddresses string
+	Password       string
+	MasterName     string
 }
 
-func NewRedisCache(redisURL string) *RedisCache {
-	client := redis.NewClient(&redis.Options{
-		Addr: redisURL,
+type RedisCache struct {
+	client redis.UniversalClient
+}
+
+func NewRedisCache(config *RedisConfig) *RedisCache {
+	addrs := strings.Split(config.RedisAddresses, ",")
+	client := redis.NewUniversalClient(&redis.UniversalOptions{
+		Password:   config.Password,
+		Addrs:      addrs,
+		MasterName: config.MasterName,
 	})
 	return &RedisCache{client: client}
 }

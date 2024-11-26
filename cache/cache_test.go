@@ -16,8 +16,10 @@ func TestCache(t *testing.T) {
 			Type: "ristretto",
 		}},
 		{"Redis", &cache.CfgCache{
-			Type:     "ristretto",
-			RedisUrl: "localhost:6379",
+			Type: "redis",
+			Redis: &cache.RedisConfig{
+				RedisAddresses: "localhost:6379",
+			},
 		}},
 	}
 
@@ -158,8 +160,7 @@ func TestDelKey(t *testing.T) {
 			Type: "ristretto",
 		}},
 		{"Redis", &cache.CfgCache{
-			Type:     "ristretto",
-			RedisUrl: "localhost:6379",
+			Type: "ristretto",
 		}},
 	}
 	for _, ct := range cacheTypes {
