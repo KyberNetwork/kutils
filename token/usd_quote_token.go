@@ -21,6 +21,7 @@ var MapUSDQuoteTokenByChainId = map[string]*AddressSymbol{
 	"534352": {Symbol: "USDT", Address: "0xf55bec9cafdbe8730f096aa55dad6d22d44099df"},
 	"196":    {Symbol: "USDT", Address: "0x1e4a5963abfd975d8c9021ce480b42188849d41d"},
 	"56":     {Symbol: "USDT", Address: "0x55d398326f99059ff775485246999027b3197955"},
+	"146":    {Symbol: "USDC.e", Address: "0x29219dd400f2bf60e5a23d13be72b486d4038894"},
 }
 
 func GetQuoteByChainId(chainId string) *AddressSymbol {
