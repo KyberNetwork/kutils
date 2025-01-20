@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	DefaultAuthRegexp = regexp.MustCompile(`Click sign to add favorite (\w+) at Kyberswap.com without logging in.
+	DefaultAuthRegexp = regexp.MustCompile(`Click sign to (.+?) at Kyberswap.com without logging in.
 This request won’t trigger any blockchain transaction or cost any gas fee. Expires in 7 days. 
 
 Issued at: (.+)`)
