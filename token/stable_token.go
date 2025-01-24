@@ -39,6 +39,7 @@ var MapStableTokens = map[string]map[string]string{
 		"0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": "USDT",
 		"0x7f5c764cbc14f9669b88837ca1490cca17c31607": "USDC",
 		"0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": "DAI",
+		"0x7F5c764cBc14f9669B88837ca1490cCa17c31607": "USDT.e",
 	},
 	"base": {
 		"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": "USDC",
@@ -65,11 +66,13 @@ var MapStableTokens = map[string]map[string]string{
 		"0x493257fd37edb34451f62edf8d2a0c418852ba4c": "USDT",
 		"0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4": "USDC.e",
 		"0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4": "USDC",
+		"0x4B9eb6c0b6ea15176BBF62841C6B2A8a398cb656": "DAI",
 	},
 	"fantom": {
 		"0x049d68029688eabf473097a2fc38ef61633a3c7a": "fUSDT",
 		"0x04068da6c83afcfa0e13ba15a6696662335d5b75": "USDC",
 		"0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e": "DAI",
+		"0xcc1b99dDAc1a33c201a742A1851662E87BC7f22C": "USDT",
 	},
 	"polygon-zkevm": {
 		"0xa8ce8aee21bc2a48a5ef670afcc9274c7bbbc035": "USDC",
