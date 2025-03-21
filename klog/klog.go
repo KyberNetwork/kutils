@@ -39,17 +39,15 @@ const (
 
 func InitLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 	var err error
-	once.Do(func() {
-		log, err = logger.InitLogger(logger.Configuration{
-			EnableConsole:    config.EnableConsole,
-			EnableJSONFormat: config.EnableJSONFormat,
-			ConsoleLevel:     config.ConsoleLevel,
-			EnableFile:       config.EnableFile,
-			FileJSONFormat:   config.FileJSONFormat,
-			FileLevel:        config.FileLevel,
-			FileLocation:     config.FileLocation,
-		}, backend)
-	})
+	log, err = logger.InitLogger(logger.Configuration{
+		EnableConsole:    config.EnableConsole,
+		EnableJSONFormat: config.EnableJSONFormat,
+		ConsoleLevel:     config.ConsoleLevel,
+		EnableFile:       config.EnableFile,
+		FileJSONFormat:   config.FileJSONFormat,
+		FileLevel:        config.FileLevel,
+		FileLocation:     config.FileLocation,
+	}, backend)
 	return log, err
 }
 
