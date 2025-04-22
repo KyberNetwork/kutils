@@ -2,6 +2,7 @@ package token
 
 import (
 	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
+	"strings"
 )
 
 var MapStableTokens = map[string]map[string]string{
@@ -80,6 +81,24 @@ var MapStableTokens = map[string]map[string]string{
 		"0xc5015b9d9161dca7e18e32f6f25c4ad850731fd4": "DAI",
 		"0x37eaa0ef3549a5bb7d431be78a3d99bd360d19e5": "USDC.e",
 	},
+	"sonic": {
+		"0x29219dd400f2Bf60E5a23d13Be72B486D4038894": "USDC",
+		"0x6047828dc181963ba44974801ff68e538da5eaf9": "USDT",
+	},
+	"berachain": {
+		"0x549943e04f40284185054145c6E4e9568C1D3241": "USDC",
+		"0x688e72142674041f8f6Af4c808a4045cA1D6aC82": "byUSD",
+		"0x779Ded0c9e1022225f8E0630b35a9b54bE713736": "USDT",
+	},
+	"ronin": {
+		"0x0b7007c13325c48911f73a2dad5fa5dcbf808adc": "USDC",
+	},
+	"unichain": {
+		"0x078D782b760474a361dDA0AF3839290b0EF57AD6": "USDC",
+		"0x9151434b16b9763660705744891fA906F660EcC5": "USDT0",
+		"0x588CE4F028D8e7B53B687865d6A67b3A54C75518": "USDT",
+		"0x20CAb320A855b39F724131C69424240519573f81": "DAI",
+	},
 }
 
 func GetStableTokensByChainID(chainId uint) []string {
@@ -94,7 +113,7 @@ func GetStableTokensByChainID(chainId uint) []string {
 	}
 	listToken := make([]string, 0, len(mapTokens))
 	for key := range mapTokens {
-		listToken = append(listToken, key)
+		listToken = append(listToken, strings.ToLower(key))
 	}
 	return listToken
 }

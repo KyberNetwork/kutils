@@ -245,6 +245,34 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
+	"sonic": {
+		"usd": {
+			"USDC": "0x29219dd400f2Bf60E5a23d13Be72B486D4038894",
+			"USDT": "0x6047828dc181963ba44974801ff68e538da5eaf9",
+			"USD+": "0x53e24706D6642CA495498557415b1af7A025D8Da",
+		},
+	},
+	"berachain": {
+		"usd": {
+			"USDC":  "0x549943e04f40284185054145c6E4e9568C1D3241",
+			"byUSD": "0x688e72142674041f8f6Af4c808a4045cA1D6aC82",
+			"USDT":  "0x779Ded0c9e1022225f8E0630b35a9b54bE713736",
+		},
+		"eth": {
+			"WETH":   "0x4F9A0e7FD2Bf6067db6994CF12E4495Df938E6e9",
+			"rETH":   "0xb23c20efce6e24acca0cef9b7b7aa196b84ec942",
+			"frxETH": "0xCf7eceE185f19e2E970a301eE37F93536ed66179",
+		},
+	},
+	"ronin": {},
+	"unichain": {
+		"usd": {
+			"USDC":  "0x078D782b760474a361dDA0AF3839290b0EF57AD6",
+			"USDT0": "0x9151434b16b9763660705744891fA906F660EcC5",
+			"USDT":  "0x588CE4F028D8e7B53B687865d6A67b3A54C75518",
+			"DAI":   "0x20CAb320A855b39F724131C69424240519573f81",
+		},
+	},
 }
 
 func GetTokensByGroup(chainId uint) map[string][]string {
