@@ -13,7 +13,7 @@ var MapStableTokens = map[string]map[string]string{
 	},
 	"polygon": {
 		"0xc2132d05d31c914a87c6611c10748aeb04b58e8f": "USDT",
-		"0x2791bca1f2de4661ed88a30c99a7a9449aa84174": "USDC",
+		"0x2791bca1f2de4661ed88a30c99a7a9449aa84174": "USDC.e",
 		"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359": "USDC",
 		"0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063": "DAI",
 	},
