@@ -118,7 +118,7 @@ func alignTypes(target, value reflect.Value) reflect.Value {
 
 			// Handle slices within maps
 			if v.Kind() == reflect.Slice {
-				sliceType := reflect.TypeOf([]int{}) // Create the correct slice type
+				sliceType := value.Type() // Create the correct slice type
 				newSlice := reflect.MakeSlice(sliceType, v.Len(), v.Cap())
 
 				for i := 0; i < v.Len(); i++ {
@@ -138,7 +138,7 @@ func alignTypes(target, value reflect.Value) reflect.Value {
 
 	// Handle slice type conversion
 	if target.Kind() == reflect.Slice && value.Kind() == reflect.Slice {
-		sliceType := reflect.TypeOf([]int{})
+		sliceType := value.Type()
 		newSlice := reflect.MakeSlice(sliceType, value.Len(), value.Cap())
 		for i := 0; i < value.Len(); i++ {
 			elem := value.Index(i)
