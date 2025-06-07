@@ -1,10 +1,11 @@
 package cache_test
 
 import (
-	"github.com/KyberNetwork/kutils/cache"
-	"github.com/stretchr/testify/require"
 	"testing"
 	"time"
+
+	"github.com/KyberNetwork/kutils/cache"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCache(t *testing.T) {
@@ -66,6 +67,18 @@ func TestCache(t *testing.T) {
 			require.NoError(t, err)
 
 			var result *example
+			err = sCache.Get(key, &result)
+			require.NoError(t, err)
+			require.Equal(t, input, result)
+		})
+		t.Run("Slice Types", func(t *testing.T) {
+			sCache := cache.NewCache(ct.config)
+			key := "sliceTest"
+			input := []*example{{Name: "pointer", Age: 25, Value: 100}}
+			err := sCache.Set(key, input, time.Minute)
+			require.NoError(t, err)
+
+			var result []*example
 			err = sCache.Get(key, &result)
 			require.NoError(t, err)
 			require.Equal(t, input, result)
