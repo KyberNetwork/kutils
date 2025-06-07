@@ -37,6 +37,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"wbETH":         "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
 			"rETH":          "0xae78736Cd615f374D3085123A210448E74Fc6393",
 			"eETH":          "0x35fA164735182de50811E8e2E824cFb9B6118ac2",
+			"ETH":           "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"btc": {
 			"WBTC": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
@@ -58,6 +59,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MATICX":  "0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6",
 			"stMATIC": "0x3a58a54c066fdc0f2d55fc9c89f0415c92ebf3c4",
 			"rMatic":  "0x9f28e2455f9FFcFac9EBD6084853417362bc5dBb",
+			"POL":     "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"eth": {
 			"WETH":   "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
@@ -93,6 +95,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 		"avax": {
 			"WAVAX": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
 			"sAVAX": "0x2b2C81e08f1Af8835a78Bb2A90AE924ACE0eA4bE",
+			"AVAX":  "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"arbitrum": {
@@ -143,6 +146,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"sETH":   "0xe405de8f52ba7559f9df3c368500b6e6ae6cee49",
 			"cbETH":  "0xaddb6a0412de1ba0f936dcaeb8aaa24578dcf3b2",
 			"frxETH": "0x6806411765af15bddd26f8f544a34cc40cb9838b",
+			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"btc": {
 			"sBTC": "0x298b9b95708152ff6968aafd889c6586e9169f1d",
@@ -163,6 +167,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"WETH":   "0x4200000000000000000000000000000000000006",
 			"wstETH": "0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452",
 			"cbETH":  "0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22",
+			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"linea": {
@@ -178,6 +183,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"ezETH":  "0x2416092f143378750bb29b79ed961ab195cceea5",
 			"inETH":  "0x5a7a183b6b44dc4ec2e3d2ef43f98c5152b1d76d",
 			"uniETH": "0x15eefe5b297136b8712291b632404b66a8ef4d25",
+			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"scroll": {
@@ -194,6 +200,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"pufETH": "0xc4d46E8402F476F269c379677C99F18E22Ea030e",
 			"weETH":  "0x01f0a31698c4d065659b9bdc21b3610292a1c506",
 			"wstETH": "0xf610a9dfb7c89644979b4a0f27063e9e7d7cda32",
+			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"blast": {
@@ -206,6 +213,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"ezETH": "0x2416092f143378750bb29b79ed961ab195cceea5",
 			"nETH":  "0xce971282fAAc9faBcF121944956da7142cccC855",
 			"weETH": "0x04c0599ae5a44757c0af6f9ec3b93da8976c150a",
+			"ETH":   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"mantle": {},
@@ -225,6 +233,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"WETH":  "0x5aea5775959fbc2557cc8789bc1bf90a239d9a91",
 			"rETH":  "0x32Fd44bB869620C0EF993754c8a00Be67C464806",
 			"cbETH": "0x75Af292c1c9a37b3EA2E6041168B4E48875b9ED5",
+			"ETH":   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"fantom": {},
@@ -233,6 +242,35 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"WETH":   "0x4F9A0e7FD2Bf6067db6994CF12E4495Df938E6e9",
 			"rETH":   "0xb23c20efce6e24acca0cef9b7b7aa196b84ec942",
 			"frxETH": "0xCf7eceE185f19e2E970a301eE37F93536ed66179",
+			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+		},
+	},
+	"sonic": {
+		"usd": {
+			"USDC": "0x29219dd400f2Bf60E5a23d13Be72B486D4038894",
+			"USDT": "0x6047828dc181963ba44974801ff68e538da5eaf9",
+			"USD+": "0x53e24706D6642CA495498557415b1af7A025D8Da",
+		},
+	},
+	"berachain": {
+		"usd": {
+			"USDC":  "0x549943e04f40284185054145c6E4e9568C1D3241",
+			"byUSD": "0x688e72142674041f8f6Af4c808a4045cA1D6aC82",
+			"USDT":  "0x779Ded0c9e1022225f8E0630b35a9b54bE713736",
+		},
+		"eth": {
+			"WETH":   "0x4F9A0e7FD2Bf6067db6994CF12E4495Df938E6e9",
+			"rETH":   "0xb23c20efce6e24acca0cef9b7b7aa196b84ec942",
+			"frxETH": "0xCf7eceE185f19e2E970a301eE37F93536ed66179",
+		},
+	},
+	"ronin": {},
+	"unichain": {
+		"usd": {
+			"USDC":  "0x078D782b760474a361dDA0AF3839290b0EF57AD6",
+			"USDT0": "0x9151434b16b9763660705744891fA906F660EcC5",
+			"USDT":  "0x588CE4F028D8e7B53B687865d6A67b3A54C75518",
+			"DAI":   "0x20CAb320A855b39F724131C69424240519573f81",
 		},
 	},
 }

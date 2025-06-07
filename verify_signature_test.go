@@ -10,10 +10,6 @@ import (
 
 func TestVerifySignature(t *testing.T) {
 	// Common test regexp and duration
-	authRegexp := regexp.MustCompile(`Click sign to add favorite tokens at Kyberswap.com without logging in.
-This request won’t trigger any blockchain transaction or cost any gas fee. Expires in 7 days. 
-
-Issued at: (.+)`)
 	tenMinutes := 10 * time.Minute
 
 	type args struct {
@@ -35,7 +31,8 @@ Issued at: (.+)`)
 					Msg:       "Click sign to add favorite tokens at Kyberswap.com without logging in.\nThis request won’t trigger any blockchain transaction or cost any gas fee. Expires in 7 days. \n\nIssued at: 2024-11-13T07:22:42.790Z",
 					Address:   "0x63FaC9201494f0bd17B9892B9fae4d52fe3BD377",
 				},
-				authMessageRegexp: nil,
+				authMessageRegexp: kutils.DefaultAuthRegexp,
+				authExpiry:        10000 * time.Hour,
 			},
 			wantErr: false,
 		},
@@ -47,7 +44,7 @@ Issued at: (.+)`)
 					Msg:       "Signing this message at: 2024-03-20T10:00:00Z",
 					Address:   "0xabcd...",
 				},
-				authMessageRegexp: authRegexp,
+				authMessageRegexp: kutils.DefaultAuthRegexp,
 				authExpiry:        tenMinutes,
 			},
 			wantErr: true,
@@ -61,7 +58,7 @@ Issued at: (.+)`)
 					Msg:       "Signing this message at: 2024-03-20T10:00:00Z",
 					Address:   "0xabcd...",
 				},
-				authMessageRegexp: authRegexp,
+				authMessageRegexp: kutils.DefaultAuthRegexp,
 				authExpiry:        tenMinutes,
 			},
 			wantErr: true,
@@ -74,7 +71,7 @@ Issued at: (.+)`)
 					Msg:       "Signing this message at: 2024-03-20T10:00:00Z",
 					Address:   "0xdifferentAddress...",
 				},
-				authMessageRegexp: authRegexp,
+				authMessageRegexp: kutils.DefaultAuthRegexp,
 				authExpiry:        tenMinutes,
 			},
 			wantErr: true,
@@ -87,7 +84,7 @@ Issued at: (.+)`)
 					Msg:       "Click sign to add favorite tokens at Kyberswap.com without logging in.\nThis request won’t trigger any blockchain transaction or cost any gas fee. Expires in 7 days. \n\nIssued at: 2024-11-01T07:22:42.790Z",
 					Address:   "0x63FaC9201494f0bd17B9892B9fae4d52fe3BD377",
 				},
-				authMessageRegexp: authRegexp,
+				authMessageRegexp: kutils.DefaultAuthRegexp,
 				authExpiry:        tenMinutes,
 			},
 			wantErr: true,
@@ -100,7 +97,7 @@ Issued at: (.+)`)
 					Msg:       "Invalid message format",
 					Address:   "0xabcd...",
 				},
-				authMessageRegexp: authRegexp,
+				authMessageRegexp: kutils.DefaultAuthRegexp,
 				authExpiry:        tenMinutes,
 			},
 			wantErr: true,
@@ -109,9 +106,7 @@ Issued at: (.+)`)
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var err error
-			if tt.name == "Valid signature and message" {
-				err = kutils.VerifyEIP191Signature(&tt.args.eip191, nil, 10000*time.Hour)
-			} else if tt.name == "Expired message" {
+			if tt.name == "Expired message" {
 				err = kutils.VerifyEIP191SignatureWithDefaults(&tt.args.eip191)
 			} else {
 				err = kutils.VerifyEIP191Signature(&tt.args.eip191, tt.args.authMessageRegexp, tt.args.authExpiry)

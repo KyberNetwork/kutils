@@ -2,6 +2,7 @@ package token
 
 import (
 	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
+	"strings"
 )
 
 var MapStableTokens = map[string]map[string]string{
@@ -12,7 +13,7 @@ var MapStableTokens = map[string]map[string]string{
 	},
 	"polygon": {
 		"0xc2132d05d31c914a87c6611c10748aeb04b58e8f": "USDT",
-		"0x2791bca1f2de4661ed88a30c99a7a9449aa84174": "USDC",
+		"0x2791bca1f2de4661ed88a30c99a7a9449aa84174": "USDC.e",
 		"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359": "USDC",
 		"0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063": "DAI",
 	},
@@ -37,8 +38,8 @@ var MapStableTokens = map[string]map[string]string{
 	},
 	"optimism": {
 		"0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": "USDT",
-		"0x7f5c764cbc14f9669b88837ca1490cca17c31607": "USDC",
 		"0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": "DAI",
+		"0x7f5c764cbc14f9669b88837ca1490cca17c31607": "USDC.e",
 	},
 	"base": {
 		"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": "USDC",
@@ -65,17 +66,37 @@ var MapStableTokens = map[string]map[string]string{
 		"0x493257fd37edb34451f62edf8d2a0c418852ba4c": "USDT",
 		"0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4": "USDC.e",
 		"0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4": "USDC",
+		"0x4B9eb6c0b6ea15176BBF62841C6B2A8a398cb656": "DAI",
 	},
 	"fantom": {
 		"0x049d68029688eabf473097a2fc38ef61633a3c7a": "fUSDT",
 		"0x04068da6c83afcfa0e13ba15a6696662335d5b75": "USDC",
 		"0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e": "DAI",
+		"0xcc1b99dDAc1a33c201a742A1851662E87BC7f22C": "USDT",
 	},
 	"polygon-zkevm": {
 		"0xa8ce8aee21bc2a48a5ef670afcc9274c7bbbc035": "USDC",
 		"0x1e4a5963abfd975d8c9021ce480b42188849d41d": "USDT",
 		"0xc5015b9d9161dca7e18e32f6f25c4ad850731fd4": "DAI",
 		"0x37eaa0ef3549a5bb7d431be78a3d99bd360d19e5": "USDC.e",
+	},
+	"sonic": {
+		"0x29219dd400f2Bf60E5a23d13Be72B486D4038894": "USDC",
+		"0x6047828dc181963ba44974801ff68e538da5eaf9": "USDT",
+	},
+	"berachain": {
+		"0x549943e04f40284185054145c6E4e9568C1D3241": "USDC",
+		"0x688e72142674041f8f6Af4c808a4045cA1D6aC82": "byUSD",
+		"0x779Ded0c9e1022225f8E0630b35a9b54bE713736": "USDT",
+	},
+	"ronin": {
+		"0x0b7007c13325c48911f73a2dad5fa5dcbf808adc": "USDC",
+	},
+	"unichain": {
+		"0x078D782b760474a361dDA0AF3839290b0EF57AD6": "USDC",
+		"0x9151434b16b9763660705744891fA906F660EcC5": "USDT0",
+		"0x588CE4F028D8e7B53B687865d6A67b3A54C75518": "USDT",
+		"0x20CAb320A855b39F724131C69424240519573f81": "DAI",
 	},
 }
 
@@ -91,7 +112,7 @@ func GetStableTokensByChainID(chainId uint) []string {
 	}
 	listToken := make([]string, 0, len(mapTokens))
 	for key := range mapTokens {
-		listToken = append(listToken, key)
+		listToken = append(listToken, strings.ToLower(key))
 	}
 	return listToken
 }
