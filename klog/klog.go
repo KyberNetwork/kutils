@@ -2,8 +2,6 @@ package klog
 
 import (
 	"context"
-	"sync"
-
 	"github.com/KyberNetwork/logger"
 )
 
@@ -14,8 +12,7 @@ func DefaultLogger() Logger {
 type Logger = logger.Logger
 
 var (
-	log  Logger
-	once sync.Once
+	log Logger
 )
 
 type Configuration struct {
@@ -52,11 +49,9 @@ func InitLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 }
 
 func Log() Logger {
-	once.Do(func() {
-		if log == nil {
-			log = DefaultLogger()
-		}
-	})
+	if log == nil {
+		log = DefaultLogger()
+	}
 	return log
 }
 

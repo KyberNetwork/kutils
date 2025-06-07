@@ -38,9 +38,8 @@ var MapStableTokens = map[string]map[string]string{
 	},
 	"optimism": {
 		"0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": "USDT",
-		"0x7f5c764cbc14f9669b88837ca1490cca17c31607": "USDC",
 		"0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": "DAI",
-		"0x7F5c764cBc14f9669B88837ca1490cCa17c31607": "USDT.e",
+		"0x7f5c764cbc14f9669b88837ca1490cca17c31607": "USDC.e",
 	},
 	"base": {
 		"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": "USDC",
