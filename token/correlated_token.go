@@ -16,6 +16,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MIM":   "0x99D8a9C45b2ecA8864373A26D1459e3Dff1e17F3",
 			"USDe":  "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
 			"sUSDe": "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+			"USD1":  "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
 		},
 		"eth": {
 			"WETH":          "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -162,6 +163,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MAI":     "0xbf1aeA8670D2528E08334083616dD9C5F3B087aE",
 			"USD+":    "0xb79dd08ea68a908a97220c76d19a6aa9cbde4376",
 			"axlUSDC": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
+			"EURC":    "0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42",
 		},
 		"eth": {
 			"WETH":   "0x4200000000000000000000000000000000000006",
