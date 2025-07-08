@@ -77,6 +77,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"BOB":     "0xB0B195aEFA3650A6908f15CdaC7D92F8a5791B0B",
 			"MIM":     "0xfE19F0B51438fd612f6FD59C1dbB3eA319f433Ba",
 			"axlUSDC": "0x4268b8f0b87b6eae5d897996e6b845ddbd99adf3",
+			"USD1":    "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
 		},
 		"eth": {
 			"wbETH": "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
@@ -92,6 +93,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MAI":    "0x5c49b268c9841AFF1Cc3B0a418ff5c3442eE3F3b",
 			"YUSD":   "0x111111111111ed1D73f860F57b2798b683f2d325",
 			"MIM":    "0x130966628846BFd36ff31a822705796e8cb8C18D",
+			"EURC":   "0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42",
 		},
 		"avax": {
 			"WAVAX": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
@@ -252,6 +254,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"USDC": "0x29219dd400f2Bf60E5a23d13Be72B486D4038894",
 			"USDT": "0x6047828dc181963ba44974801ff68e538da5eaf9",
 			"USD+": "0x53e24706D6642CA495498557415b1af7A025D8Da",
+			"EURC": "0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42",
 		},
 	},
 	"berachain": {
