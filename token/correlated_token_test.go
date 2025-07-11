@@ -17,5 +17,5 @@ func TestGetTokensByGroup(t *testing.T) {
 	require.Len(t, results["btc"], 2)
 
 	allTokens := token.GetAllTokenByGroup()
-	require.Len(t, allTokens, 5)
+	require.Greater(t, len(allTokens), 5)
 }

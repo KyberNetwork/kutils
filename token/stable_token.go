@@ -98,6 +98,10 @@ var MapStableTokens = map[string]map[string]string{
 		"0x588CE4F028D8e7B53B687865d6A67b3A54C75518": "USDT",
 		"0x20CAb320A855b39F724131C69424240519573f81": "DAI",
 	},
+	"hyperevm": {
+		"0xa25eaf2906fa1a3a13edac9b9657108af7b703e3": "USDT0",
+		"0xb50A96253aBDF803D85efcDce07Ad8becBc52BD5": "USDHL",
+	},
 }
 
 func GetStableTokensByChainID(chainId uint) []string {
