@@ -99,7 +99,7 @@ var MapStableTokens = map[string]map[string]string{
 		"0x20CAb320A855b39F724131C69424240519573f81": "DAI",
 	},
 	"hyperevm": {
-		"0xa25eaf2906fa1a3a13edac9b9657108af7b703e3": "USDT0",
+		"0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb": "USDT0",
 		"0xb50A96253aBDF803D85efcDce07Ad8becBc52BD5": "USDHL",
 	},
 }
