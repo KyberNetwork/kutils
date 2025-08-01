@@ -18,6 +18,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"sUSDe": "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
 			"USD1":  "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
 			"EURC":  "0x1abaea1f7c830bd89acc67ec4af516284b1bc33c",
+			"USDf":  "0xFa2B947eEc368f42195f24F36d2aF29f7c24CeC2",
 		},
 		"eth": {
 			"WETH":          "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -79,6 +80,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MIM":     "0xfE19F0B51438fd612f6FD59C1dbB3eA319f433Ba",
 			"axlUSDC": "0x4268b8f0b87b6eae5d897996e6b845ddbd99adf3",
 			"USD1":    "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
+			"USDf":    "0xb3b02E4A9Fb2bD28CC2ff97B0aB3F6B3Ec1eE9D2",
 		},
 		"eth": {
 			"wbETH": "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
@@ -325,6 +327,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 		"hype": {
 			"LHYPE":   "0x5748ae796AE46A4F1348a1693de4b50560485562",
 			"wstHYPE": "0x94e8396e0869c9F2200760aF0621aFd240E1CF38",
+			"mHyper":  "0xdAbB040c428436d41CECd0Fb06bCFDBAaD3a9AA8",
 		},
 	},
 }
