@@ -5,10 +5,10 @@ import (
 	"runtime"
 )
 
-// ShortStack returns a short stack trace, including only until the first few traces from the same package organization
-// prefix as the caller.
+// ShortStack returns a short stack trace, including only until the first few traces from the same package prefix as the
+// caller.
 func ShortStack(count ...int) []byte {
-	cnt := 2
+	cnt := 3
 	if len(count) > 0 {
 		cnt = count[0]
 	}
@@ -24,35 +24,45 @@ func ShortStack(count ...int) []byte {
 			}
 			idxNewLine += prevIdxNewLine + 1
 		}
-		var org []byte
+		var pkg []byte
 		var start int
 		if idxNewLine >= 0 {
-			caller := buf[prevIdxNewLine+1 : idxNewLine]
-			idxSlash := bytes.IndexByte(caller, '/')
-			if idxSlash >= 0 {
-				idxSecondSlash := bytes.IndexByte(caller[idxSlash+1:], '/')
-				if idxSecondSlash >= 0 {
-					org = caller[:idxSlash+idxSecondSlash+1]
+			idxSlash := prevIdxNewLine
+			var prevIdxSlash int
+			for range 2 {
+				prevIdxSlash = idxSlash
+				if idxSlash = bytes.IndexByte(buf[prevIdxSlash+1:idxNewLine], '/'); idxSlash < 0 {
+					break
+				} else if idxSlash += prevIdxSlash + 1; idxSlash >= idxNewLine-1 {
+					break
 				}
 			}
-			start = bytes.IndexByte(buf[idxNewLine+1:], '\n')
-			if start >= 0 {
+			if idxSlash >= 0 {
+				prevIdxSlash = idxSlash
+				if idxSlash = bytes.IndexAny(buf[prevIdxSlash+1:idxNewLine], "/."); idxSlash >= 0 {
+					pkg = buf[prevIdxNewLine+1 : prevIdxSlash+idxSlash]
+					start = bytes.IndexByte(buf[idxNewLine+1:], '\n')
+				}
+			}
+			if start >= 0 && pkg != nil {
 				start += idxNewLine + 2
-				idxSameOrg := start
-				var prevIdxSameOrg int
+				idxSamePkg := start
+				var prevIdxSamePkg int
 				for range cnt {
-					prevIdxSameOrg = idxSameOrg
-					if idxSameOrg = bytes.Index(buf[prevIdxSameOrg+1:], org); idxSameOrg < 0 {
+					prevIdxSamePkg = idxSamePkg
+					if idxSamePkg = bytes.Index(buf[prevIdxSamePkg+1:], pkg); idxSamePkg < 0 {
 						break
 					}
-					idxSameOrg += prevIdxSameOrg + 1
+					idxSamePkg += prevIdxSamePkg + 1
 				}
-				if idxSameOrg >= 0 {
-					idxNewLine = bytes.IndexByte(buf[idxSameOrg+1:], '\n')
+				if idxSamePkg >= 0 {
+					idxNewLine = bytes.IndexByte(buf[idxSamePkg+1:], '\n')
 					if idxNewLine >= 0 {
-						return buf[start : idxSameOrg+1+idxNewLine]
+						return buf[start : idxSamePkg+1+idxNewLine]
 					}
 				}
+			} else {
+				start = idxNewLine + 1
 			}
 		}
 
