@@ -1,8 +1,9 @@
 package token
 
 import (
-	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
 	"strings"
+
+	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
 )
 
 var MapCorrelatedTokens = map[string]map[string]map[string]string{
@@ -169,6 +170,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"USD+":    "0xb79dd08ea68a908a97220c76d19a6aa9cbde4376",
 			"axlUSDC": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
 			"EURC":    "0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42",
+			"USDT.e":  "0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2",
 		},
 		"eth": {
 			"WETH":   "0x4200000000000000000000000000000000000006",

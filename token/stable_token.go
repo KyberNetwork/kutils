@@ -47,6 +47,7 @@ var MapStableTokens = map[string]map[string]string{
 		"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": "USDC",
 		"0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca": "USDbC",
 		"0x50c5725949a6f0c72e6c4a641f24049a917db0cb": "DAI",
+		"0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2": "USDT.e",
 	},
 	"linea": {
 		"0xa219439258ca9da29e9cc4ce5596924745e12b93": "USDT",
