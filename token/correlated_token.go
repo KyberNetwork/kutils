@@ -332,6 +332,39 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"mHyper":  "0xdAbB040c428436d41CECd0Fb06bCFDBAaD3a9AA8",
 		},
 	},
+	"plasma": {
+		"usd": {
+			"USDai":  "0x0A1a1A107E45b7Ced86833863f482BC5f4ed82EF",
+			"USDe":   "0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
+			"USDT0":  "0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb",
+			"USD0":   "0x87e617C7484aDE79FcD90db58BEB82B057facb48",
+			"sUSDAI": "0x0B2b2B2076d95dda7817e785989fE353fe955ef9",
+			"sUSDe":  "0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2",
+			"cUSD0":  "0xbEeE5862649eF24c1F1d5e799505F67F1e7bAB9a",
+		},
+		"eth": {
+			"WETH":  "0x9895D81bB462A195b4922ED7De0e3ACD007c32CB",
+			"weETH": "0xA3D68b74bF0528fdD07263c60d6488749044914b",
+			"rsETH": "0x9eCaf80c1303CCA8791aFBc0AD405c8a35e8d9f1",
+		},
+	},
+	"etherlink": {
+		"usd": {
+			"USDC": "0x796Ea11Fa2dD751eD01b53C372fFDB4AAa8f00F9",
+			"USDT": "0x2C03058C8AFC06713be23e58D2febC8337dbfE6A",
+		},
+		"eth": {
+			"WETH": "0xfc24f770F94edBca6D6f885E12d4317320BcB401",
+		},
+		"wbtc": {
+			"WBTC": "0xbFc94CD2B1E55999Cfc7347a9313e88702B83d0F",
+			"LBTC": "0xecAc9C5F704e954931349Da37F60E39f515c11c1",
+		},
+		"xtz": {
+			"WXTZ":  "0xc9B53AB2679f573e480d01e0f49e2B5CFB7a3EAb",
+			"stXTZ": "0x01F07f4d78d47A64F4C3B2b65f513f15Be6E1854",
+		},
+	},
 }
 
 func GetTokensByGroup(chainId uint) map[string][]string {

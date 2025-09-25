@@ -103,6 +103,13 @@ var MapStableTokens = map[string]map[string]string{
 		"0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb": "USDT0",
 		"0xb50A96253aBDF803D85efcDce07Ad8becBc52BD5": "USDHL",
 	},
+	"plasma": {
+		"0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb": "USDT0",
+	},
+	"etherlink": {
+		"0x796Ea11Fa2dD751eD01b53C372fFDB4AAa8f00F9": "USDC",
+		"0x2C03058C8AFC06713be23e58D2febC8337dbfE6A": "USDT",
+	},
 }
 
 func GetStableTokensByChainID(chainId uint) []string {
