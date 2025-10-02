@@ -82,6 +82,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"axlUSDC": "0x4268b8f0b87b6eae5d897996e6b845ddbd99adf3",
 			"USD1":    "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
 			"USDf":    "0xb3b02E4A9Fb2bD28CC2ff97B0aB3F6B3Ec1eE9D2",
+			"DUSD":    "0xaf44A1E76F56eE12ADBB7ba8acD3CbD474888122",
 		},
 		"eth": {
 			"wbETH": "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
