@@ -1,8 +1,9 @@
 package token
 
 import (
-	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
 	"strings"
+
+	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
 )
 
 var MapCorrelatedTokens = map[string]map[string]map[string]string{
@@ -16,6 +17,9 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MIM":   "0x99D8a9C45b2ecA8864373A26D1459e3Dff1e17F3",
 			"USDe":  "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
 			"sUSDe": "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+			"USD1":  "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
+			"EURC":  "0x1abaea1f7c830bd89acc67ec4af516284b1bc33c",
+			"USDf":  "0xFa2B947eEc368f42195f24F36d2aF29f7c24CeC2",
 		},
 		"eth": {
 			"WETH":          "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -76,6 +80,9 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"BOB":     "0xB0B195aEFA3650A6908f15CdaC7D92F8a5791B0B",
 			"MIM":     "0xfE19F0B51438fd612f6FD59C1dbB3eA319f433Ba",
 			"axlUSDC": "0x4268b8f0b87b6eae5d897996e6b845ddbd99adf3",
+			"USD1":    "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
+			"USDf":    "0xb3b02E4A9Fb2bD28CC2ff97B0aB3F6B3Ec1eE9D2",
+			"DUSD":    "0xaf44A1E76F56eE12ADBB7ba8acD3CbD474888122",
 		},
 		"eth": {
 			"wbETH": "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
@@ -91,6 +98,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MAI":    "0x5c49b268c9841AFF1Cc3B0a418ff5c3442eE3F3b",
 			"YUSD":   "0x111111111111ed1D73f860F57b2798b683f2d325",
 			"MIM":    "0x130966628846BFd36ff31a822705796e8cb8C18D",
+			"EURC":   "0xC891EB4cbdEFf6e073e859e987815Ed1505c2ACD",
 		},
 		"avax": {
 			"WAVAX": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
@@ -108,6 +116,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MIM":     "0xFEa7a6a0B346362BF88A9e4A88416B77a57D6c2A",
 			"fUSDC":   "0x4cfa50b7ce747e2d61724fcac57f24b748ff2b2a",
 			"axlUSDC": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
+			"USDe":    "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
 		},
 		"eth": {
 			"WETH":    "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
@@ -162,6 +171,8 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MAI":     "0xbf1aeA8670D2528E08334083616dD9C5F3B087aE",
 			"USD+":    "0xb79dd08ea68a908a97220c76d19a6aa9cbde4376",
 			"axlUSDC": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
+			"EURC":    "0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42",
+			"USDT.e":  "0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2",
 		},
 		"eth": {
 			"WETH":   "0x4200000000000000000000000000000000000006",
@@ -247,9 +258,43 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 	},
 	"sonic": {
 		"usd": {
-			"USDC": "0x29219dd400f2Bf60E5a23d13Be72B486D4038894",
-			"USDT": "0x6047828dc181963ba44974801ff68e538da5eaf9",
-			"USD+": "0x53e24706D6642CA495498557415b1af7A025D8Da",
+			"USDC":       "0x29219dd400f2Bf60E5a23d13Be72B486D4038894",
+			"USDT":       "0x6047828dc181963ba44974801ff68e538da5eaf9",
+			"USD+":       "0x53e24706D6642CA495498557415b1af7A025D8Da",
+			"EURC":       "0xe715cbA7B5cCb33790ceBFF1436809d36cb17E57",
+			"aSonUSDC":   "0x578Ee1ca3a8E1b54554Da1Bf7C583506C4CD11c6",
+			"scUSD":      "0xd3DCe716f3eF535C5Ff8d041c1A41C3bd89b97aE",
+			"stkscUSD":   "0x4d85ba8c3918359c78ed09581e5bc7578ba932ba",
+			"wstkscUSD":  "0x9fb76f7ce5FCeAA2C42887ff441D46095E494206",
+			"bUSDC.e-20": "0x322e1d5384aa4ed66aeca770b95686271de61dc3",
+			"dUSD":       "0x53a6abb52b2f968fa80df6a894e4f1b1020da975",
+			"xUSD":       "0x6202b9f02e30e5e1c62cc01e4305450e5d83b926",
+			"frxUSD":     "0x80eede496655fb9047dd39d9f418d5483ed600df",
+			"nUSD":       "0xd229ff67806d6037e6dfc9eeb2f331cb74e8c79e",
+		},
+		"eth": {
+			"WETH":      "0x50c42dEAcD8Fc9773493ED674b675bE577f2634b",
+			"scETH":     "0x3bcE5CB273F0F148010BbEa2470e7b5df84C7812",
+			"stkscETH":  "0x455d5f11Fea33A8fa9D3e285930b478B6bF85265",
+			"wstkscETH": "0xE8a41c62BB4d5863C6eadC96792cFE90A1f37C47",
+			"frxETH":    "0x43eDD7f3831b08FE70B7555ddD373C8bF65a9050",
+		},
+		"btc": {
+			"WBTC":        "0x0555E30da8f98308EdB960aa94C0Db47230d2B9c",
+			"scBTC":       "0xBb30e76d9Bb2CC9631F7fC5Eb8e87B5Aff32bFbd",
+			"stkscBTC":    "0xd0851030c94433c261b405fecbf1dec5e15948d0",
+			"wstkscBTC":   "0xdb58c4db1a0f45dda3d2f8e44c3300bb6510c866",
+			"SolvBTC":     "0x541FD749419CA806a8bc7da8ac23D346f2dF8B77",
+			"SolvBTC.BBN": "0xcc0966d8418d412c599a6421b760a847eb169a8c",
+		},
+		"s": {
+			"wS":   "0x039e2fB66102314Ce7b64Ce5Ce3E5183bc94aD38",
+			"OS":   "0xb1e25689D55734FD3ffFc939c4C3Eb52DFf8A794",
+			"wOS":  "0x9f0df7799f6fdad409300080cff680f5a23df4b1",
+			"wanS": "0xfa85fe5a8f5560e9039c04f2b0a90de1415abd70",
+			"anS":  "0x0c4e186eae8acaa7f7de1315d5ad174be39ec987",
+			"beS":  "0x871a101dcf22fe4fe37be7b654098c801cba1c88",
+			"stS":  "0xe5da20f15420ad15de0fa650600afc998bbe3955",
 		},
 	},
 	"berachain": {
@@ -271,6 +316,55 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"USDT0": "0x9151434b16b9763660705744891fA906F660EcC5",
 			"USDT":  "0x588CE4F028D8e7B53B687865d6A67b3A54C75518",
 			"DAI":   "0x20CAb320A855b39F724131C69424240519573f81",
+		},
+	},
+	"hyperevm": {
+		"usd": {
+			"USDT0": "0xa25eaf2906fa1a3a13edac9b9657108af7b703e3",
+			"USDHL": "0xb50A96253aBDF803D85efcDce07Ad8becBc52BD5",
+			"feUSD": "0x02c6a2fA58cC01A18B8D9E00eA48d65E4dF26c70",
+		},
+		"eth": {
+			"UETH":  "0xBe6727B535545C67d5cAa73dEa54865B92CF7907",
+			"cmETH": "0xE6829d9a7eE3040e1276Fa75293Bde931859e8fA",
+		},
+		"hype": {
+			"LHYPE":   "0x5748ae796AE46A4F1348a1693de4b50560485562",
+			"wstHYPE": "0x94e8396e0869c9F2200760aF0621aFd240E1CF38",
+			"mHyper":  "0xdAbB040c428436d41CECd0Fb06bCFDBAaD3a9AA8",
+		},
+	},
+	"plasma": {
+		"usd": {
+			"USDai":  "0x0A1a1A107E45b7Ced86833863f482BC5f4ed82EF",
+			"USDe":   "0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
+			"USDT0":  "0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb",
+			"USD0":   "0x87e617C7484aDE79FcD90db58BEB82B057facb48",
+			"sUSDAI": "0x0B2b2B2076d95dda7817e785989fE353fe955ef9",
+			"sUSDe":  "0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2",
+			"cUSD0":  "0xbEeE5862649eF24c1F1d5e799505F67F1e7bAB9a",
+		},
+		"eth": {
+			"WETH":  "0x9895D81bB462A195b4922ED7De0e3ACD007c32CB",
+			"weETH": "0xA3D68b74bF0528fdD07263c60d6488749044914b",
+			"rsETH": "0x9eCaf80c1303CCA8791aFBc0AD405c8a35e8d9f1",
+		},
+	},
+	"etherlink": {
+		"usd": {
+			"USDC": "0x796Ea11Fa2dD751eD01b53C372fFDB4AAa8f00F9",
+			"USDT": "0x2C03058C8AFC06713be23e58D2febC8337dbfE6A",
+		},
+		"eth": {
+			"WETH": "0xfc24f770F94edBca6D6f885E12d4317320BcB401",
+		},
+		"wbtc": {
+			"WBTC": "0xbFc94CD2B1E55999Cfc7347a9313e88702B83d0F",
+			"LBTC": "0xecAc9C5F704e954931349Da37F60E39f515c11c1",
+		},
+		"xtz": {
+			"WXTZ":  "0xc9B53AB2679f573e480d01e0f49e2B5CFB7a3EAb",
+			"stXTZ": "0x01F07f4d78d47A64F4C3B2b65f513f15Be6E1854",
 		},
 	},
 }

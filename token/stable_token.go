@@ -1,8 +1,9 @@
 package token
 
 import (
-	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
 	"strings"
+
+	"github.com/KyberNetwork/kyberswap-dex-lib/pkg/valueobject"
 )
 
 var MapStableTokens = map[string]map[string]string{
@@ -40,11 +41,13 @@ var MapStableTokens = map[string]map[string]string{
 		"0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": "USDT",
 		"0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": "DAI",
 		"0x7f5c764cbc14f9669b88837ca1490cca17c31607": "USDC.e",
+		"0x0b2c639c533813f4aa9d7837caf62653d097ff85": "USDC",
 	},
 	"base": {
 		"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": "USDC",
 		"0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca": "USDbC",
 		"0x50c5725949a6f0c72e6c4a641f24049a917db0cb": "DAI",
+		"0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2": "USDT.e",
 	},
 	"linea": {
 		"0xa219439258ca9da29e9cc4ce5596924745e12b93": "USDT",
@@ -66,13 +69,11 @@ var MapStableTokens = map[string]map[string]string{
 		"0x493257fd37edb34451f62edf8d2a0c418852ba4c": "USDT",
 		"0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4": "USDC.e",
 		"0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4": "USDC",
-		"0x4B9eb6c0b6ea15176BBF62841C6B2A8a398cb656": "DAI",
 	},
 	"fantom": {
 		"0x049d68029688eabf473097a2fc38ef61633a3c7a": "fUSDT",
 		"0x04068da6c83afcfa0e13ba15a6696662335d5b75": "USDC",
 		"0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e": "DAI",
-		"0xcc1b99dDAc1a33c201a742A1851662E87BC7f22C": "USDT",
 	},
 	"polygon-zkevm": {
 		"0xa8ce8aee21bc2a48a5ef670afcc9274c7bbbc035": "USDC",
@@ -97,6 +98,17 @@ var MapStableTokens = map[string]map[string]string{
 		"0x9151434b16b9763660705744891fA906F660EcC5": "USDT0",
 		"0x588CE4F028D8e7B53B687865d6A67b3A54C75518": "USDT",
 		"0x20CAb320A855b39F724131C69424240519573f81": "DAI",
+	},
+	"hyperevm": {
+		"0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb": "USDT0",
+		"0xb50A96253aBDF803D85efcDce07Ad8becBc52BD5": "USDHL",
+	},
+	"plasma": {
+		"0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb": "USDT0",
+	},
+	"etherlink": {
+		"0x796Ea11Fa2dD751eD01b53C372fFDB4AAa8f00F9": "USDC",
+		"0x2C03058C8AFC06713be23e58D2febC8337dbfE6A": "USDT",
 	},
 }
 
