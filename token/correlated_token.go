@@ -116,6 +116,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"MIM":     "0xFEa7a6a0B346362BF88A9e4A88416B77a57D6c2A",
 			"fUSDC":   "0x4cfa50b7ce747e2d61724fcac57f24b748ff2b2a",
 			"axlUSDC": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
+			"USDe":    "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
 		},
 		"eth": {
 			"WETH":    "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
