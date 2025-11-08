@@ -64,6 +64,10 @@ func NewRedisCache(cfg *RedisConfig) *RedisCache {
 	return &RedisCache{client: client}
 }
 
+func (r *RedisCache) GetClient() redis.UniversalClient {
+	return r.client
+}
+
 func (r *RedisCache) Set(key string, value interface{}, ttl time.Duration) error {
 	// Marshal the value to JSON
 	jsonData, err := json.Marshal(value)
