@@ -86,6 +86,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 		},
 		"eth": {
 			"wbETH": "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
+			"ETH":   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"avalanche": {
@@ -126,6 +127,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"rETH":    "0xec70dcb4a1efa46b8f2d97c310c9c4790ba5ffa8",
 			"sfrxETH": "0x95ab45875cffdba1e5f451b950bc2e42c0053f39",
 			"frxETH":  "0x178412e79c25968a32e89b11f63b33f733770c2a",
+			"ETH":     "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"btc": {
 			"tBTC":  "0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
@@ -278,6 +280,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"stkscETH":  "0x455d5f11Fea33A8fa9D3e285930b478B6bF85265",
 			"wstkscETH": "0xE8a41c62BB4d5863C6eadC96792cFE90A1f37C47",
 			"frxETH":    "0x43eDD7f3831b08FE70B7555ddD373C8bF65a9050",
+			"ETH":       "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"btc": {
 			"WBTC":        "0x0555E30da8f98308EdB960aa94C0Db47230d2B9c",
@@ -307,6 +310,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"WETH":   "0x4F9A0e7FD2Bf6067db6994CF12E4495Df938E6e9",
 			"rETH":   "0xb23c20efce6e24acca0cef9b7b7aa196b84ec942",
 			"frxETH": "0xCf7eceE185f19e2E970a301eE37F93536ed66179",
+			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"ronin": {},
@@ -327,6 +331,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 		"eth": {
 			"UETH":  "0xBe6727B535545C67d5cAa73dEa54865B92CF7907",
 			"cmETH": "0xE6829d9a7eE3040e1276Fa75293Bde931859e8fA",
+			"ETH":   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"hype": {
 			"LHYPE":   "0x5748ae796AE46A4F1348a1693de4b50560485562",
@@ -348,6 +353,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"WETH":  "0x9895D81bB462A195b4922ED7De0e3ACD007c32CB",
 			"weETH": "0xA3D68b74bF0528fdD07263c60d6488749044914b",
 			"rsETH": "0x9eCaf80c1303CCA8791aFBc0AD405c8a35e8d9f1",
+			"ETH":   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
 	"etherlink": {
@@ -357,6 +363,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 		},
 		"eth": {
 			"WETH": "0xfc24f770F94edBca6D6f885E12d4317320BcB401",
+			"ETH":  "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"wbtc": {
 			"WBTC": "0xbFc94CD2B1E55999Cfc7347a9313e88702B83d0F",
