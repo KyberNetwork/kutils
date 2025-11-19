@@ -1,5 +1,5 @@
-github.com/KyberNetwork/kyberswap-dex-lib v0.123.2 h1:TYOz/lg9f/CnXayFVG5m0OGJCEy0uys5rp1mK+HcmTk=
-github.com/KyberNetwork/kyberswap-dex-lib v0.123.2/go.mod h1:xmNa6iYYL9jmEH0zGwsMYjgKV49txOu2XCAgezkk0o0=
+github.com/KyberNetwork/kyberswap-dex-lib v0.124.0 h1:lweWCttjNF5XHHV4MIQmNWb9Cd6excfQKPHW8lssKEE=
+github.com/KyberNetwork/kyberswap-dex-lib v0.124.0/go.mod h1:pvvniD7x2b0S4QorLchb2uj3fs35iIom6q8T+BYCcTQ=
 github.com/KyberNetwork/logger v1.0.3 h1:q3O6+rbJWDw9xqF4zWbc48uNooDXF++2XBaj3NL1P5s=
 github.com/KyberNetwork/logger v1.0.3/go.mod h1:zBqHbtJ3nJn6HQnp6UW8pbQkR+U6tSRFd5CzfiKL3Kw=
 github.com/aws/smithy-go v1.15.0 h1:PS/durmlzvAFpQHDs4wi4sNNP9ExsqZh6IlfdHXgKK8=

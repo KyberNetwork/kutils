@@ -110,6 +110,10 @@ var MapStableTokens = map[string]map[string]string{
 		"0x796Ea11Fa2dD751eD01b53C372fFDB4AAa8f00F9": "USDC",
 		"0x2C03058C8AFC06713be23e58D2febC8337dbfE6A": "USDT",
 	},
+	"monad": {
+		"0x754704Bc059F8C67012fEd69BC8A327a5aafb603": "USDC",
+		"0xe7cd86e13AC4309349F30B3435a9d337750fC82D": "USDT0",
+	},
 }
 
 func GetStableTokensByChainID(chainId uint) []string {

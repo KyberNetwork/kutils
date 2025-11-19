@@ -367,6 +367,13 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"stXTZ": "0x01F07f4d78d47A64F4C3B2b65f513f15Be6E1854",
 		},
 	},
+	"monad": {
+		"usd": {
+			"USDC":  "0x754704Bc059F8C67012fEd69BC8A327a5aafb603",
+			"USDT0": "0xe7cd86e13AC4309349F30B3435a9d337750fC82D",
+			"AUSD":  "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
+		},
+	},
 }
 
 func GetTokensByGroup(chainId uint) map[string][]string {

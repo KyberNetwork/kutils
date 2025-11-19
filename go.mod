@@ -3,7 +3,7 @@ module github.com/KyberNetwork/kutils
 go 1.25.0
 
 require (
-	github.com/KyberNetwork/kyberswap-dex-lib v0.123.2
+	github.com/KyberNetwork/kyberswap-dex-lib v0.124.0
 	github.com/KyberNetwork/logger v1.0.3
 	github.com/aws/smithy-go v1.15.0
 	github.com/bytedance/sonic v1.14.0
