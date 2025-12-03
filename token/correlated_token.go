@@ -86,7 +86,12 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 		},
 		"eth": {
 			"wbETH": "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
-			"ETH":   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+			"ETH":   "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+		},
+		"bnb": {
+			"WBNB":    "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+			"BNB":     "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+			"slisBNB": "0xb0b84d294e0c75a6abe60171b70edeb2efd14a1b",
 		},
 	},
 	"avalanche": {
