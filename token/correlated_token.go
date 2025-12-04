@@ -138,6 +138,7 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"tBTC":  "0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
 			"BTC.b": "0x2297aebd383787a160dd0d9f71508148769342e3",
 			"WBTC":  "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+			"cbBTC": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
 		},
 	},
 	"optimism": {
@@ -186,6 +187,10 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"wstETH": "0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452",
 			"cbETH":  "0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22",
 			"ETH":    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+		},
+		"btc": {
+			"cbBTC": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
+			"wbtc":  "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
 		},
 	},
 	"linea": {
