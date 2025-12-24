@@ -44,9 +44,10 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"ETH":           "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 		"btc": {
-			"WBTC": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-			"sBTC": "0xfE18be6b3Bd88A2D2A7f928d00292E7a9963CfC6",
-			"tBTC": "0x18084fba666a33d37592fa2633fd49a74dd93a88",
+			"WBTC":  "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+			"sBTC":  "0xfE18be6b3Bd88A2D2A7f928d00292E7a9963CfC6",
+			"tBTC":  "0x18084fba666a33d37592fa2633fd49a74dd93a88",
+			"cbBTC": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
 		},
 	},
 	"polygon": {
