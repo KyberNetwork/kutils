@@ -49,6 +49,10 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"tBTC":  "0x18084fba666a33d37592fa2633fd49a74dd93a88",
 			"cbBTC": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
 		},
+		"au": {
+			"paxg": "0x45804880de22913dafe09f4980848ece6ecbaf78",
+			"xaut": "0x68749665ff8d2d112fa859aa293f07a622782f38",
+		},
 	},
 	"polygon": {
 		"usd": {
