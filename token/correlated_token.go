@@ -398,6 +398,12 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"AUSD":  "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
 		},
 	},
+	"megaeth": {
+		"usd": {
+			"USDT0": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+			"USDm":  "0xFAfDdbb3FC7688494971a79cc65DCa3EF82079E7",
+		},
+	},
 }
 
 func GetTokensByGroup(chainId uint) map[string][]string {
