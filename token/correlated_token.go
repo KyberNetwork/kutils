@@ -26,8 +26,6 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"WETH":          "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
 			"ezETH":         "0xbf5495Efe5DB9ce00f80364C8B423567e58d2110",
 			"weETH":         "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
-			"rsETH":         "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
-			"stETH":         "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
 			"wstETH":        "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
 			"pufETH":        "0xd9a442856c234a39a81a089c06451ebaa4306a72",
 			"rswETH":        "0xFAe103DC9cf190eD75350761e95403b7b8aFa6c0",
