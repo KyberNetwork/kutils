@@ -132,3 +132,33 @@ func GetStableTokensByChainID(chainId uint) []string {
 	}
 	return listToken
 }
+
+func GetDefaultStable(chainId int) string {
+	if chainId == 1 {
+		return "0xdac17f958d2ee523a2206206994597c13d831ec7"
+	}
+	if chainId == 8453 {
+		return "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+	}
+	if chainId == 42161 {
+		return "0xaf88d065e77c8cc2239327c5edb3a432268e5831"
+	}
+	if chainId == 56 {
+		return "0x55d398326f99059ff775485246999027b3197955"
+	}
+	if chainId == 143 {
+		return "0x754704bc059f8c67012fed69bc8a327a5aafb603"
+	}
+	chainName, err := valueobject.ToString(valueobject.ChainID(chainId))
+	if err != nil {
+		return ""
+	}
+	mapTokens, ok := MapStableTokens[chainName]
+	if !ok {
+		return ""
+	}
+	for key, _ := range mapTokens {
+		return key
+	}
+	return ""
+}
