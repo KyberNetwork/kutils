@@ -114,6 +114,9 @@ var MapStableTokens = map[string]map[string]string{
 		"0x754704Bc059F8C67012fEd69BC8A327a5aafb603": "USDC",
 		"0xe7cd86e13AC4309349F30B3435a9d337750fC82D": "USDT0",
 	},
+	"robinhood": {
+		"0x5fc5360d0400a0fd4f2af552add042d716f1d168": "USDG",
+	},
 }
 
 func GetStableTokensByChainID(chainId uint) []string {
