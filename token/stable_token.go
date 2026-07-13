@@ -160,7 +160,7 @@ func GetDefaultStable(chainId int) string {
 	if !ok {
 		return ""
 	}
-	for key, _ := range mapTokens {
+	for key := range mapTokens {
 		return key
 	}
 	return ""

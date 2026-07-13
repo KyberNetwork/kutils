@@ -13,8 +13,6 @@ import (
 
 	"github.com/go-resty/resty/v2"
 	"github.com/stretchr/testify/assert"
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
 )
 
 func TestHttpCfg_NewRestyClient(t *testing.T) {
@@ -171,18 +169,16 @@ func Test_h2c(t *testing.T) {
 		_, _ = w.Write([]byte(body))
 		assert.Nil(t, r.TLS, nil)
 	})
-	h2s := &http2.Server{}
-	h2cHandler := h2c.NewHandler(handler, h2s)
 	tests := []struct {
-		name          string
-		serverHandler http.Handler
-		clientCfg     *HttpCfg
-		wantErr       assert.ErrorAssertionFunc
-		expects       func(*testing.T, *resty.Response)
+		name      string
+		serverH2c bool
+		clientCfg *HttpCfg
+		wantErr   assert.ErrorAssertionFunc
+		expects   func(*testing.T, *resty.Response)
 	}{
 		{
 			"h1 server, h1 client",
-			handler,
+			false,
 			&HttpCfg{},
 			assert.NoError,
 			func(t *testing.T, resp *resty.Response) {
@@ -193,14 +189,14 @@ func Test_h2c(t *testing.T) {
 		},
 		{
 			"h1 server, h2c client",
-			handler,
+			false,
 			&HttpCfg{UseH2c: true},
 			assert.Error,
 			nil,
 		},
 		{
 			"h2 server, h1 client",
-			h2cHandler,
+			true,
 			&HttpCfg{},
 			assert.NoError,
 			func(t *testing.T, resp *resty.Response) {
@@ -211,7 +207,7 @@ func Test_h2c(t *testing.T) {
 		},
 		{
 			"h2 server, h2c client",
-			h2cHandler,
+			true,
 			&HttpCfg{UseH2c: true},
 			assert.NoError,
 			func(t *testing.T, resp *resty.Response) {
@@ -228,7 +224,12 @@ func Test_h2c(t *testing.T) {
 			assert.NoError(t, err)
 			srv := &http.Server{
 				Addr:    ln.Addr().String(),
-				Handler: tt.serverHandler,
+				Handler: handler,
+			}
+			if tt.serverH2c {
+				srv.Protocols = new(http.Protocols)
+				srv.Protocols.SetHTTP1(true)
+				srv.Protocols.SetUnencryptedHTTP2(true)
 			}
 
 			go func() {
