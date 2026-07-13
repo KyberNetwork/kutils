@@ -404,6 +404,16 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"USDm":  "0xFAfDdbb3FC7688494971a79cc65DCa3EF82079E7",
 		},
 	},
+	"robinhood": {
+		"usd": {
+			"USDG": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+			"USDe": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+		},
+		"eth": {
+			"WETH": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+			"ETH":  "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+		},
+	},
 }
 
 func GetTokensByGroup(chainId uint) map[string][]string {
