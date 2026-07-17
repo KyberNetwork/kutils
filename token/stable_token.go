@@ -152,6 +152,12 @@ func GetDefaultStable(chainId int) string {
 	if chainId == 143 {
 		return "0x754704bc059f8c67012fed69bc8a327a5aafb603"
 	}
+	if chainId == 999 {
+		return "0xb88339cb7199b77e23db6e890353e22632ba630f"
+	}
+	if chainId == 137 {
+		return "0xc2132d05d31c914a87c6611c10748aeb04b58e8f"
+	}
 	chainName, err := valueobject.ToString(valueobject.ChainID(chainId))
 	if err != nil {
 		return ""
