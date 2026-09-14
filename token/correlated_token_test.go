@@ -12,10 +12,11 @@ func TestGetTokensByGroup(t *testing.T) {
 	require.Len(t, results, 0)
 
 	results = token.GetTokensByGroup(1)
-	require.Len(t, results, 4)
+	ethereum := token.MapCorrelatedTokens["ethereum"]
+	require.Len(t, results, len(ethereum))
 	require.Greater(t, len(results["usd"]), 8)
-	require.Len(t, results["eth"], 18)
-	require.Len(t, results["btc"], 4)
+	require.Len(t, results["eth"], len(ethereum["eth"]))
+	require.Len(t, results["btc"], len(ethereum["btc"]))
 
 	allTokens := token.GetAllTokenByGroup()
 	require.Greater(t, len(allTokens), 5)

@@ -32,7 +32,8 @@ func TestVerifySignature(t *testing.T) {
 					Address:   "0x63FaC9201494f0bd17B9892B9fae4d52fe3BD377",
 				},
 				authMessageRegexp: kutils.DefaultAuthRegexp,
-				authExpiry:        10000 * time.Hour,
+				// Fixture issued 2024-11-13; keep far enough in the future that wall-clock time cannot expire it.
+				authExpiry: time.Until(time.Date(2100, 1, 1, 0, 0, 0, 0, time.UTC)),
 			},
 			wantErr: false,
 		},

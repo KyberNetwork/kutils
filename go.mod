@@ -4,7 +4,7 @@ go 1.26.1
 
 require (
 	github.com/KyberNetwork/kyber-trace-go v0.1.2
-	github.com/KyberNetwork/kyberswap-dex-lib v0.133.1
+	github.com/KyberNetwork/kyberswap-dex-lib v0.134.0
 	github.com/KyberNetwork/logger v1.0.3
 	github.com/aws/smithy-go v1.15.0
 	github.com/bytedance/sonic v1.14.0

@@ -1,7 +1,7 @@
 github.com/KyberNetwork/kyber-trace-go v0.1.2 h1:x82SuCYTj4naoGNQ02DoSQgl7f07grl8RL8cKGAFNLw=
 github.com/KyberNetwork/kyber-trace-go v0.1.2/go.mod h1:X6hVacmKMeOEOlFh4TyfEHaEVRerFQ5YLuQ4keRV3hw=
-github.com/KyberNetwork/kyberswap-dex-lib v0.133.1 h1:L3q4MjlM0ByjS0kzMKwvxWm6U4Sehigi35NvR5sbiYY=
-github.com/KyberNetwork/kyberswap-dex-lib v0.133.1/go.mod h1:csUs26yKQiPnhCKQUQmpyvPSc/9IaUIMMufnuBvrV70=
+github.com/KyberNetwork/kyberswap-dex-lib v0.134.0 h1:Y+H8U9metTeF6jTCyPj3tn3rQ3cjqARzGtHp67TDNAA=
+github.com/KyberNetwork/kyberswap-dex-lib v0.134.0/go.mod h1:MEn6hQtf0BYQ8MXkNMZfpg1ZxZ57Y27Mhme/pk+D69s=
 github.com/KyberNetwork/logger v1.0.3 h1:q3O6+rbJWDw9xqF4zWbc48uNooDXF++2XBaj3NL1P5s=
 github.com/KyberNetwork/logger v1.0.3/go.mod h1:zBqHbtJ3nJn6HQnp6UW8pbQkR+U6tSRFd5CzfiKL3Kw=
 github.com/ProjectZKM/Ziren/crates/go-runtime/zkvm_runtime v0.0.0-20251001021608-1fe7b43fc4d6 h1:1zYrtlhrZ6/b6SAjLSfKzWtdgqK0U+HtH/VcBWh1BaU=
