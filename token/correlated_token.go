@@ -417,6 +417,15 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"ETH":  "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
 		},
 	},
+	"arc": {
+		"usd": {
+			"USDC":       "0x3600000000000000000000000000000000000000",
+			"USDCNative": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+		},
+		"eth": {
+			"WETH": "0x128cC466B61f542da60c70e3aA11c10e19B84EDB",
+		},
+	},
 }
 
 func GetTokensByGroup(chainId uint) map[string][]string {
