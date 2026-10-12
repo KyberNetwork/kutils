@@ -14,7 +14,6 @@ var MapCorrelatedTokens = map[string]map[string]map[string]string{
 			"DAI":       "0x6b175474e89094c44da98b954eedeac495271d0f",
 			"MAI":       "0x8D6CeBD76f18E1558D4DB88138e2DeFB3909fAD6",
 			"BOB":       "0xB0B195aEFA3650A6908f15CdaC7D92F8a5791B0B",
-			"MIM":       "0x99D8a9C45b2ecA8864373A26D1459e3Dff1e17F3",
 			"USDe":      "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
 			"sUSDe":     "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
 			"USD1":      "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
